@@ -1,3 +1,5 @@
+package Klassen;
+
 /**
  * 
  * @author ${Patrick Hentschel 1524045}
@@ -30,7 +32,16 @@ public class Betrag {
 	 */
 	private int getVorzeichen() {
 		// TODO implementieren getVorzeichen
-
+		if(betrag > 1){	
+			return 1;
+		}else if(betrag < 1){
+			return -1;
+		}else if(betrag == 1){
+			return 1;
+		}
+		
+		return -0;
+		
 	}
 
 }
