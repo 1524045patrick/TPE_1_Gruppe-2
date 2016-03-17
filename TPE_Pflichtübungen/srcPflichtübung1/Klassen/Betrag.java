@@ -89,7 +89,7 @@ public final class Betrag {
 		this.betrag += a - b;
 		return this.betrag;
 	}
-
+	
 	/**
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param a
