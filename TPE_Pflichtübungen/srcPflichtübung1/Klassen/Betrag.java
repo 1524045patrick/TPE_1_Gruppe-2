@@ -124,9 +124,9 @@ public final class Betrag {
 	 */
 	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
 	
-	public static String prozent(double prozentZahl, long betrag){
+	public String prozent(double prozentZahl){
 		long prozent = (betrag * (long) prozentZahl) / 100;
-		return +prozentZahl+ " % von "+betrag+" sind "+prozent+".";
+		return +prozentZahl+ " % von "+betrag+" sind "+prozent+" "+waehrung;
 	}
 	
 	/**
@@ -137,9 +137,9 @@ public final class Betrag {
 	 */
 	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
 	
-	 public static String promille(double promilleZahl, long betrag){
+	 public String promille(double promilleZahl){
 		 long promille = (betrag * (long) promilleZahl) / 1000 ;
-		 return +promilleZahl+ " ‰ von "+betrag+" sind "+promille+".";
+		 return +promilleZahl+ " ‰ von "+betrag+" sind "+promille+" "+waehrung;
 	 }
 
 	 
