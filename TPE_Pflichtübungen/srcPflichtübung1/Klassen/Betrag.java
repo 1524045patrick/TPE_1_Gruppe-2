@@ -19,8 +19,9 @@ public final class Betrag {
 	 *            �bergibt die Waehrung des Betrages
 	 */
 
-	Betrag(double betrag, String waehrung) {
+	public Betrag(double betrag, String waehrung) throws IllegalArgumentException {
 		// TODO ausgabe in hundertstel
+		if(betrag != )
 		this.betrag = (long) betrag;
 		this.waehrung = waehrung;
 
@@ -34,7 +35,7 @@ public final class Betrag {
 	 *            �bergibt die Waehrung des Betrages
 	 * 
 	 */
-	Betrag(long betrag, String waehrung) {
+	public Betrag(long betrag, String waehrung) {
 
 		this.betrag = betrag;
 		this.waehrung = waehrung;
@@ -72,8 +73,8 @@ public final class Betrag {
 	 * @return gibt das Ergebnis der Addition als summe aus
 	 */
 	public long addiere(long a, long b) {
-		long summe = a + b;
-		return summe;
+		this.betrag += a + b;
+		return this.betrag;
 	}
 
 	/**
@@ -85,8 +86,8 @@ public final class Betrag {
 	 * @return
 	 */
 	public long subtrahiere(long a, long b) {
-		long summe = a - b;
-		return summe;
+		this.betrag += a - b;
+		return this.betrag;
 	}
 
 	/**
@@ -97,9 +98,9 @@ public final class Betrag {
 	 *            zweite ben�tigte Variable f�r die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
-	public double multipliziere(double a, double b) {
-		double produkt = (a * b);
-		return produkt;
+	public long multipliziere(double a, double b) {
+		this.betrag = (long) (a * b);
+		return this.betrag;
 	}
 
 	/**
@@ -110,8 +111,8 @@ public final class Betrag {
 	 *            zweite ben�tigte Variable f�r die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
-	public int multipliziere(int a, int b) {
-		int produkt = (a * b);
-		return produkt;
+	public long multipliziere(int a, int b) {
+		this.betrag = (long)(a * b);
+		return this.betrag;
 	}
 }
