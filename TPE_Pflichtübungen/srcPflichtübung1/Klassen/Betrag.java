@@ -114,4 +114,33 @@ public final class Betrag {
 		int produkt = (a * b);
 		return produkt;
 	}
+	
+	
+	/**
+	 * @author Dennis Szczerbinski 1521092
+	 * @param prozentZahl - 
+	 * @param betrag
+	 * @return gibt den Prozentwert zurück
+	 */
+	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
+	
+	public static String prozent(double prozentZahl, long betrag){
+		long prozent = (betrag * (long) prozentZahl) / 100;
+		return +prozentZahl+ " % von "+betrag+" sind "+prozent+".";
+	}
+	
+	/**
+	 * @author Dennis Szczerbinski 1521092
+	 * @param promilleZahl
+	 * @param betrag
+	 * @return gibt den Promillewert zurück
+	 */
+	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
+	
+	 public static String promille(double promilleZahl, long betrag){
+		 long promille = (betrag * (long) promilleZahl) / 1000 ;
+		 return +promilleZahl+ " ‰ von "+betrag+" sind "+promille+".";
+	 }
+
+	 
 }
