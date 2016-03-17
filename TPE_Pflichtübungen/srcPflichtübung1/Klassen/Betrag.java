@@ -21,7 +21,7 @@ public final class Betrag {
 
 	public Betrag(double betrag, String waehrung) throws IllegalArgumentException {
 		// TODO ausgabe in hundertstel
-		if(betrag != )
+		
 		this.betrag = (long) betrag;
 		this.waehrung = waehrung;
 
