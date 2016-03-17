@@ -3,7 +3,7 @@ package Klassen;
 /**
  * 
  * @author ${Patrick Hentschel 1524045}
- * @category Betragsklasse verwaltet die Währung, sowie den Kontostand.
+ * @category Betragsklasse verwaltet die Wï¿½hrung, sowie den Kontostand.
  */
 public final class Betrag {
 	private long betrag;
@@ -14,9 +14,9 @@ public final class Betrag {
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param betrag
-	 *            übergibt den Betrag des Kontostandes als double Wert
+	 *            ï¿½bergibt den Betrag des Kontostandes als double Wert
 	 * @param waehrung
-	 *            übergibt die Waehrung des Betrages
+	 *            ï¿½bergibt die Waehrung des Betrages
 	 */
 
 	Betrag(double betrag, String waehrung) {
@@ -29,9 +29,9 @@ public final class Betrag {
 	/**
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param betrag
-	 *            übergibt den Betrag des Kontostandes als long Wert
+	 *            ï¿½bergibt den Betrag des Kontostandes als long Wert
 	 * @param waehrung
-	 *            übergibt die Waehrung des Betrages
+	 *            ï¿½bergibt die Waehrung des Betrages
 	 * 
 	 */
 	Betrag(long betrag, String waehrung) {
@@ -46,18 +46,15 @@ public final class Betrag {
 	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
 	 *         ob der Kontostand positiv oder negativ ist mittels 1 oder -1
 	 *         sollte der kontostand genau 0 sein so wird auch eine 0
-	 *         zurückgegeben
+	 *         zurï¿½ckgegeben
 	 */
 	public int getVorzeichen() {
-		// TODO keine return rückgabe?
+		// TODO keine return rï¿½ckgabe?
 		if (betrag >= 1) {
-			System.out.println("1");
 			return 1;
 		} else if (betrag == 0) {
-			System.out.println("0");
 			return 0;
 		} else if (betrag < 1) {
-			System.out.println("-1");
 			return -1;
 		}
 
@@ -97,7 +94,7 @@ public final class Betrag {
 	 * @param a
 	 *            Multiplikation mittels double Werten
 	 * @param b
-	 *            zweite benötigte Variable für die Multiplikation
+	 *            zweite benï¿½tigte Variable fï¿½r die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 	public double multipliziere(double a, double b) {
@@ -110,7 +107,7 @@ public final class Betrag {
 	 * @param a
 	 *            Multiplikation mittels zweier int Werte
 	 * @param b
-	 *            zweite benötigte Variable für die Multiplikation
+	 *            zweite benï¿½tigte Variable fï¿½r die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 	public int multipliziere(int a, int b) {
