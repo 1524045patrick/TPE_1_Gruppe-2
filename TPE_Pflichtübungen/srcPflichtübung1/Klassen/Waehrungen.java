@@ -1,6 +1,12 @@
 package Klassen;
-
-public final class Waehrungen extends Waehrung {
+/**
+ * 
+ * 
+ * @author Mandy Schmitt 1521592
+ * @category Waehrungen enthält die Liste der verschiedenen Waehrungen
+ * 
+ */
+public class Waehrungen {
 
 
 	//name
