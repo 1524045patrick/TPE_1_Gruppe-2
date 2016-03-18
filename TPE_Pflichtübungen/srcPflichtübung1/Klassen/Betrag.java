@@ -3,7 +3,7 @@ package Klassen;
 /**
  * 
  * @author ${Patrick Hentschel 1524045}
- * @category Betragsklasse verwaltet die W�hrung, sowie den Kontostand.
+ * @category Betragsklasse verwaltet die Waehrung, sowie den Kontostand, mittels folgender Funktionen.
  */
 public final class Betrag {
 	private long betrag;
@@ -14,9 +14,9 @@ public final class Betrag {
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param betrag
-	 *            �bergibt den Betrag des Kontostandes als double Wert
+	 *            uebergibt den Betrag des Kontostandes als double Wert
 	 * @param waehrung
-	 *            �bergibt die Waehrung des Betrages
+	 *            uebergibt die Waehrung des Betrages
 	 */
 
 	public Betrag(double betrag, String waehrung) throws IllegalArgumentException {
@@ -30,24 +30,43 @@ public final class Betrag {
 	/**
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param betrag
-	 *            �bergibt den Betrag des Kontostandes als long Wert
+	 *            uebergibt den Betrag des Kontostandes als long Wert
 	 * @param waehrung
-	 *            �bergibt die Waehrung des Betrages
+	 *            uebergibt die Waehrung des Betrages
 	 * 
 	 */
-	public Betrag(long betrag, String waehrung) {
-
+	//TODO Exception schreiben + Funktion
+	//TODO Ausgabe in Hunderstel
+	public Betrag(long betrag, String waehrung) throws Exception {
+		if(betrag == (String)){
+			throw new Exception("Betrag muss aus einer Zahl bestehen.");
+		}
 		this.betrag = betrag;
 		this.waehrung = waehrung;
 
 	}
 
 	/**
+	 * @author Patrick Uni
+	 */
+	
+	public static void checkFuerBuchstaben(long betrag){
+		int digit = 0;
+		for(int i = 0; i <= betrag.charAt(); i++){
+			if(Character.isDigit(pw.charAt(i))){
+				digit++;
+			}else if(digit == 0){
+				throw new MustHaveNumbersException(pw);
+			}
+		}
+	}
+	
+	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
 	 *         ob der Kontostand positiv oder negativ ist mittels 1 oder -1
 	 *         sollte der kontostand genau 0 sein so wird auch eine 0
-	 *         zur�ckgegeben
+	 *         zurueckgegeben
 	 */
 	public int getVorzeichen() {
 		// TODO keine return r�ckgabe?
@@ -95,7 +114,7 @@ public final class Betrag {
 	 * @param a
 	 *            Multiplikation mittels double Werten
 	 * @param b
-	 *            zweite ben�tigte Variable f�r die Multiplikation
+	 *            zweite benoetigte Variable fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 	public long multipliziere(double a, double b) {
@@ -108,7 +127,7 @@ public final class Betrag {
 	 * @param a
 	 *            Multiplikation mittels zweier int Werte
 	 * @param b
-	 *            zweite ben�tigte Variable f�r die Multiplikation
+	 *            zweite benoetigte Variable fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 	public long multipliziere(int a, int b) {
@@ -121,9 +140,9 @@ public final class Betrag {
 	 * @author Dennis Szczerbinski 1521092
 	 * @param prozentZahl - 
 	 * @param betrag
-	 * @return gibt den Prozentwert zurück
+	 * @return gibt den Prozentwert zurueck
 	 */
-	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
+	// TODO Eventuell muss die Waehrung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
 	
 	public String prozent(double prozentZahl){
 		long prozent = (betrag * (long) prozentZahl) / 100;
@@ -134,9 +153,9 @@ public final class Betrag {
 	 * @author Dennis Szczerbinski 1521092
 	 * @param promilleZahl
 	 * @param betrag
-	 * @return gibt den Promillewert zurück
+	 * @return gibt den Promillewert zurueck
 	 */
-	// TODO Eventuell muss die Währung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
+	// TODO Eventuell muss die Waehrung bei der Ausgabe berücksichtigt werden, notfalls noch implementieren.
 	
 	 public String promille(double promilleZahl){
 		 long promille = (betrag * (long) promilleZahl) / 1000 ;
