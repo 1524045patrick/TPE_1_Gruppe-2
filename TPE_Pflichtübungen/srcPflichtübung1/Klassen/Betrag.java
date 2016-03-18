@@ -19,7 +19,7 @@ public final class Betrag {
 	 *            uebergibt die Waehrung des Betrages
 	 */
 
-	public Betrag(double betrag, String waehrung) throws IllegalArgumentException {
+	public Betrag(double betrag, String waehrung) {
 		// TODO ausgabe in hundertstel
 		
 		this.betrag = (long) betrag;
@@ -37,29 +37,13 @@ public final class Betrag {
 	 */
 	//TODO Exception schreiben + Funktion
 	//TODO Ausgabe in Hunderstel
-	public Betrag(long betrag, String waehrung) throws Exception {
-		if(betrag == (String)){
-			throw new Exception("Betrag muss aus einer Zahl bestehen.");
-		}
+	public Betrag(long betrag, String waehrung) {
+		
 		this.betrag = betrag;
 		this.waehrung = waehrung;
 
 	}
 
-	/**
-	 * @author Patrick Uni
-	 */
-	
-	public static void checkFuerBuchstaben(long betrag){
-		int digit = 0;
-		for(int i = 0; i <= betrag.charAt(); i++){
-			if(Character.isDigit(pw.charAt(i))){
-				digit++;
-			}else if(digit == 0){
-				throw new MustHaveNumbersException(pw);
-			}
-		}
-	}
 	
 	/**
 	 * 
@@ -69,17 +53,17 @@ public final class Betrag {
 	 *         zurueckgegeben
 	 */
 	public int getVorzeichen() {
-		// TODO keine return r�ckgabe?
+		// TODO keine return
 		if (betrag >= 1) {
 			return 1;
 		} else if (betrag == 0) {
 			return 0;
-		} else if (betrag < 1) {
+		} 
+		if (betrag < 1) {
 			return -1;
 		}
-
+		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
 		return -0;
-
 	}
 
 	// TODO die arithmetischen Operationen auf den Betrag oder seperat ?
