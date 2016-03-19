@@ -8,7 +8,7 @@ package Klassen;
  */
 public class Waehrungen {
 
-
+		
 	//name
 	String dollar = "Dollar";
 	String euro = "Euro";

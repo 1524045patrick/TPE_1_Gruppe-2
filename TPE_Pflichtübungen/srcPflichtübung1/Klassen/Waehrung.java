@@ -1,4 +1,5 @@
 package Klassen;
+
 /**
  * 
  * 
@@ -9,31 +10,60 @@ package Klassen;
 
 public final class Waehrung extends Waehrungen {
 
-	public String name;
-	public String kuerzel;
-	public long kurs;
-	public long zielWaehrung;
-	public double betrag;
-	public double anfangsWaehrung;
-	
-	public String getName(){
+	private String name;
+	private String kuerzel;
+	private long kurs;
+	private long zielWaehrung;
+	private double betrag;
+
+	private double anfangsWaehrung;
+
+	public void setAnfangsWaehrung(double anfangsWaehrung) {
+		this.anfangsWaehrung = anfangsWaehrung;
+
+	}
+
+	public double getAnfangsWaehrung() {
+		return anfangsWaehrung;
+
+	}
+
+	public void setZielWaehrung(long zielWaehrung) {
+		this.zielWaehrung = zielWaehrung;
+	}
+
+	public long getZielWaehrung() {
+		return zielWaehrung;
+	}
+
+	public void setBetrag(double betrag) {
+		this.betrag = betrag;
+	}
+
+	public double getBetrag() {
+		return betrag;
+	}
+
+	public String getName() {
 		return name;
-		
+
 	}
-	public String getKuerzel(){
+
+	public String getKuerzel() {
 		return kuerzel;
-		
+
 	}
-	
-	public long getKurs(){
+
+	public long getKurs() {
 		return kurs;
-		
+
 	}
+
 	public void umrechnen(double betrag, long zielWaehrung) {
 		betrag = anfangsWaehrung * kursDollar;
 		zielWaehrung = (long) (betrag * kurs);
 		System.out.println(zielWaehrung);
-		
-		
+
 	}
+
 }
