@@ -177,6 +177,24 @@ public class Betragtest {
 		Betrag sub = new Betrag(0.0, "Euro");
 		assertEquals(10000, sub.subtrahiere(90000000000000009L, 89999999999990009L));
 	}
+	
+	@Test
+	public void testMultipliziere0(){
+		Betrag m = new Betrag(0.0, "Euro");
+		assertEquals(0, m.multipliziere(5.0, 2.0));
+	}
+	
+	@Test
+	public void testMultipliziere1(){
+		Betrag m = new Betrag(1.0, "Euro");
+		assertEquals(15.0, m.multipliziere(5.0, 3.0), 0.01);
+	}
+	
+	@Test
+	public void testMultipliziere2(){
+		Betrag m = new Betrag(1.5, "Euro");
+		assertEquals(1.5, m.multipliziere(1.0, 1.0), 0.0001);
+	}
 	// @Test
 	// public void testMultipliziereDoubleDouble() {
 	// fail("Not yet implemented");

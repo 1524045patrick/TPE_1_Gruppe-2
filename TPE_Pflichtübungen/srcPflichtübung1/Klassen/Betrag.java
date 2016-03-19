@@ -101,8 +101,10 @@ public final class Betrag {
 	 *            zweite benoetigte Variable fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
+	
+	//TODO multiplziere double fehler bei der multiplikation mit betrag
 	public long multipliziere(double a, double b) {
-		this.betrag = (long) (a * b);
+		this.betrag = this.betrag *(long) (a * b);
 		return this.betrag;
 	}
 
