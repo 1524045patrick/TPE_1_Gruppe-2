@@ -3,7 +3,8 @@ package Klassen;
 /**
  * 
  * @author ${Patrick Hentschel 1524045}
- * @category Betragsklasse verwaltet die Waehrung, sowie den Kontostand, mittels folgender Funktionen.
+ * @category Betragsklasse verwaltet die Waehrung, sowie den Kontostand, mittels
+ *           folgender Funktionen.
  */
 public final class Betrag {
 	private long betrag;
@@ -21,7 +22,7 @@ public final class Betrag {
 
 	public Betrag(double betrag, String waehrung) {
 		// TODO ausgabe in hundertstel
-		
+
 		this.betrag = (long) betrag;
 		this.waehrung = waehrung;
 
@@ -35,16 +36,14 @@ public final class Betrag {
 	 *            uebergibt die Waehrung des Betrages
 	 * 
 	 */
-	//TODO Exception schreiben + Funktion
-	//TODO Ausgabe in Hunderstel
+	// TODO Ausgabe in Hunderstel
 	public Betrag(long betrag, String waehrung) {
-		
+
 		this.betrag = betrag;
 		this.waehrung = waehrung;
 
 	}
 
-	
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
@@ -53,17 +52,55 @@ public final class Betrag {
 	 *         zurueckgegeben
 	 */
 	public int getVorzeichen() {
-		// TODO keine return
 		if (betrag >= 1) {
 			return 1;
 		} else if (betrag == 0) {
 			return 0;
-		} 
+		}
 		if (betrag < 1) {
 			return -1;
 		}
 		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
 		return -0;
+	}
+
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * @return gibt den Betrag des Objekts Betrag zurück
+	 */
+	public long getBetrag() {
+		return betrag;
+	}
+
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * @param betrag
+	 *            gibt die Moeglichkeit den Betrag des Objektes Betrag zu ändern
+	 */
+	public void setBetrag(long betrag) {
+		this.betrag = betrag;
+	}
+
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * @return gibt die Waehrung des entsprechenden Objektes Betrag aus
+	 */
+	public String getWaehrung() {
+		return waehrung;
+	}
+
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * @param waehrung
+	 *            gibt die Möglichkeit die Waehrung des Objektes Betrag zu
+	 *            ändern
+	 */
+	public void setWaehrung(String waehrung) {
+		this.waehrung = waehrung;
 	}
 
 	// TODO die arithmetischen Operationen auf den Betrag oder seperat ?
@@ -92,7 +129,7 @@ public final class Betrag {
 		this.betrag += a - b;
 		return this.betrag;
 	}
-	
+
 	/**
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param a
@@ -101,10 +138,12 @@ public final class Betrag {
 	 *            zweite benoetigte Variable fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
-	
-	//TODO multiplziere double fehler bei der multiplikation mit betrag
-	public long multipliziere(double a, double b) {
-		this.betrag = this.betrag *(long) (a * b);
+
+	// TODO multiplziere double fehler bei der multiplikation mit betrag
+	// IMMERNOCH FALSCH
+	public double multipliziereDouble(Betrag a, Betrag b) {
+		// Rundungsfehler
+		this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
 		return this.betrag;
 	}
 
@@ -113,40 +152,41 @@ public final class Betrag {
 	 * @param a
 	 *            Multiplikation mittels zweier int Werte
 	 * @param b
-	 *            zweite benoetigte Variable fuer die Multiplikation
+	 *            zweites benoetigtes Objekt fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
-	public long multipliziere(int a, int b) {
-		this.betrag = (long)(a * b);
+	public long multipliziereLong(Betrag a,Betrag b) {
+		this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
 		return this.betrag;
 	}
-	
-	
+
 	/**
 	 * @author Dennis Szczerbinski 1521092
-	 * @param prozentZahl - 
+	 * @param prozentZahl
+	 *            -
 	 * @param betrag
 	 * @return gibt den Prozentwert zurueck
 	 */
-	// TODO Eventuell muss die Waehrung bei der Ausgabe berÃ¼cksichtigt werden, notfalls noch implementieren.
-	
-	public String prozent(double prozentZahl){
+	// TODO Eventuell muss die Waehrung bei der Ausgabe berÃ¼cksichtigt werden,
+	// notfalls noch implementieren.
+
+	public String prozent(double prozentZahl) {
 		long prozent = (betrag * (long) prozentZahl) / 100;
-		return +prozentZahl+ " % von "+betrag+" sind "+prozent+" "+waehrung;
+		return +prozentZahl + " % von " + betrag + " sind " + prozent + " " + waehrung;
 	}
-	
+
 	/**
 	 * @author Dennis Szczerbinski 1521092
 	 * @param promilleZahl
 	 * @param betrag
 	 * @return gibt den Promillewert zurueck
 	 */
-	// TODO Eventuell muss die Waehrung bei der Ausgabe berÃ¼cksichtigt werden, notfalls noch implementieren.
-	
-	 public String promille(double promilleZahl){
-		 long promille = (betrag * (long) promilleZahl) / 1000 ;
-		 return +promilleZahl+ " â€° von "+betrag+" sind "+promille+" "+waehrung;
-	 }
+	// TODO Eventuell muss die Waehrung bei der Ausgabe berÃ¼cksichtigt werden,
+	// notfalls noch implementieren.
 
-	 
+	public String promille(double promilleZahl) {
+		long promille = (betrag * (long) promilleZahl) / 1000;
+		return +promilleZahl + " â€° von " + betrag + " sind " + promille + " " + waehrung;
+	}
+
 }
