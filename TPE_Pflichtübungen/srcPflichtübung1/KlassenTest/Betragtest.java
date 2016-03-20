@@ -193,12 +193,13 @@ public class Betragtest {
 		assertEquals(0, start.multipliziereDouble(a, b), 0.01 );
 	}
 	
+	//TODO Fehler
 	@Test
 	public void testMultipliziereDouble1(){
 		Betrag m = new Betrag(1.0, "Euro");
 		Betrag a = new Betrag(2.0, "Euro");
 		Betrag b = new Betrag(0.5, "Euro");
-		assertEquals(15.0, m.multipliziereDouble(a, b), 0.1);
+		assertEquals(1.0, m.multipliziereDouble(a, b), 0.1);
 	}
 	
 	

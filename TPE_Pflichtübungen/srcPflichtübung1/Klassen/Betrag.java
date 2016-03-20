@@ -143,7 +143,7 @@ public final class Betrag {
 	// IMMERNOCH FALSCH
 	public double multipliziereDouble(Betrag a, Betrag b) {
 		// Rundungsfehler
-		this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
+		this.betrag = betrag * ((a.getBetrag() * b.getBetrag()));
 		return this.betrag;
 	}
 
