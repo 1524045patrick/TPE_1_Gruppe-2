@@ -7,8 +7,9 @@ package Klassen;
  *           folgender Funktionen.
  */
 public final class Betrag {
-	private long betrag;
+	private double betrag;
 	private String waehrung;
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -17,7 +18,9 @@ public final class Betrag {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (betrag ^ (betrag >>> 32));
+		long temp;
+		temp = Double.doubleToLongBits(betrag);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
 		return result;
 	}
@@ -25,7 +28,6 @@ public final class Betrag {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	//TODO Vergleich von Währungen if(){umrechnen()}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -38,7 +40,7 @@ public final class Betrag {
 			return false;
 		}
 		Betrag other = (Betrag) obj;
-		if (betrag != other.betrag) {
+		if (Double.doubleToLongBits(betrag) != Double.doubleToLongBits(other.betrag)) {
 			return false;
 		}
 		if (waehrung == null) {
@@ -77,12 +79,12 @@ public final class Betrag {
 	 * 
 	 */
 	// TODO Ausgabe in Hunderstel
-	public Betrag(long betrag, String waehrung) {
+	//public Betrag(long betrag, String waehrung) {
 
-		this.betrag = betrag;
-		this.waehrung = waehrung;
+	//	this.betrag = betrag;
+	//	this.waehrung = waehrung;
 
-	}
+	//}
 
 	
 	/**
@@ -90,7 +92,7 @@ public final class Betrag {
 	 * @author ${Patrick Hentschel 1524045}
 	 * @return gibt den Betrag des Objekts Betrag zurück
 	 */
-	public long getBetrag() {
+	public double getBetrag() {
 		return betrag;
 	}
 
@@ -157,7 +159,7 @@ public final class Betrag {
 	 * @return gibt das Ergebnis der Addition als summe aus
 	 */
 	// TODO Beträge addieren mit Abfrage nach gleicher Währung?
-	public long addiere(Betrag b) {
+	public double addiere(Betrag b) {
 		this.betrag += b.betrag;
 		return this.betrag;
 	}
@@ -170,7 +172,7 @@ public final class Betrag {
 	 *            dem Wert b subtrahiert
 	 * @return
 	 */
-	public long subtrahiere(Betrag b) {
+	public double subtrahiere(Betrag b) {
 		this.betrag = this.betrag - b.betrag;
 		return this.betrag;
 	}
@@ -188,7 +190,8 @@ public final class Betrag {
 	public double multipliziere(Betrag b) {
 		// Rundungsfehler
 		this.betrag = this.betrag * b.getBetrag();
-		return this.betrag;
+		this.betrag = (double)this.betrag / 10000;
+		return (double)this.betrag;
 	}
 
 	/**
@@ -216,7 +219,7 @@ public final class Betrag {
 	// notfalls noch implementieren.
 
 	public String prozent(double prozentZahl) {
-		long prozent = (betrag * (long) prozentZahl) / 100;
+		long prozent = (long) ((betrag * (long) prozentZahl) / 100);
 		return +prozentZahl + " % von " + betrag + " sind " + prozent + " " + waehrung;
 	}
 
@@ -230,7 +233,7 @@ public final class Betrag {
 	// notfalls noch implementieren.
 
 	public String promille(double promilleZahl) {
-		long promille = (betrag * (long) promilleZahl) / 1000;
+		long promille = (long) ((betrag * (long) promilleZahl) / 1000);
 		return +promilleZahl + " â€° von " + betrag + " sind " + promille + " " + waehrung;
 	}
 

@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Betrag a = new Betrag(1.5, "Euro");
+		Betrag a = new Betrag(1, "Euro");
 		Betrag n = new Betrag(1000, "Euro");
 		Betrag m = new Betrag(0.0, "Euro");
 		System.out.println(m.getVorzeichen());

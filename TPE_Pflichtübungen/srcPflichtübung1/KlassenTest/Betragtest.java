@@ -87,7 +87,7 @@ public class Betragtest {
 	public void testAddiere1() {
 		Betrag addition = new Betrag(53.0, "Euro");
 		Betrag  b = new Betrag(0.07, "Euro");
-		assertEquals(5307, addition.addiere(b));
+		assertEquals(5307, addition.addiere(b), 0.001);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Betragtest {
 	public void testAddiere2() {
 		Betrag additionNeg = new Betrag(10.0, "Euro");
 		Betrag b = new Betrag(-10.00, "Euro");
-		assertEquals(0, additionNeg.addiere(b));
+		assertEquals(0, additionNeg.addiere(b), 0.001);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Betragtest {
 	public void testAddiere3() {
 		Betrag addition0 = new Betrag(0.0, "Euro");
 		Betrag b = new Betrag(0.0, "Euro");
-		assertEquals(0L, addition0.addiere(b));
+		assertEquals(0L, addition0.addiere(b), 0.001);
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class Betragtest {
 	public void testAddiere4() {
 		Betrag additionErgNeg = new Betrag(0.0, "Euro");
 		Betrag b = new Betrag(-10.00, "Euro");
-		assertEquals(-1000, additionErgNeg.addiere(b));
+		assertEquals(-1000, additionErgNeg.addiere(b), 0.001);
 	}
 
 	// TEST DER METHODE SUBTRAHIERE()
@@ -137,7 +137,7 @@ public class Betragtest {
 	public void testSubtrahiere0() {
 		Betrag sub = new Betrag(100.0, "Euro");
 		Betrag b = new Betrag(-98.0, "Euro");
-		assertEquals(200, sub.addiere(b));
+		assertEquals(200, sub.addiere(b),0.001);
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class Betragtest {
 	public void testSubtrahiere3() {
 		Betrag sub = new Betrag(1.0, "Euro");
 		Betrag b = new Betrag(10.00, "Euro");
-		assertEquals(-900, sub.subtrahiere(b));
+		assertEquals(-900, sub.subtrahiere(b), 0.001);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Betragtest {
 	public void testSubtrahiere4() {
 		Betrag sub = new Betrag(0.0, "Euro");
 		Betrag b = new Betrag(-100.00, "Euro");
-		assertEquals(10000, sub.subtrahiere(b));
+		assertEquals(10000, sub.subtrahiere(b), 0.001);
 	}
 	/**
 	 * 
@@ -208,14 +208,14 @@ public class Betragtest {
 	public void testMultipliziereDouble1(){
 		Betrag m = new Betrag(1.0, "Euro");
 		Betrag b = new Betrag(5, "Euro");
-		assertEquals(500, m.multipliziere(b), 0.001);
+		assertEquals(5, m.multipliziere(b), 0.001);
 	}
 	
 	@Test
 	public void testMultipliziereDouble2(){
 		Betrag m = new Betrag(-1.0, "Euro");
 		Betrag b = new Betrag(-5, "Euro");
-		assertEquals(500, m.multipliziere(b), 0.001);
+		assertEquals(5, m.multipliziere(b), 0.001);
 	}
 	
 	@Test
@@ -229,6 +229,6 @@ public class Betragtest {
 	public void testMultipliziereDouble4(){
 		Betrag m = new Betrag(10.0, "Euro");
 		Betrag b = new Betrag(5.0, "Euro");
-		assertEquals(500000, m.multipliziere(b), 0.001);
+		assertEquals(50, m.multipliziere(b), 0.001);
 	}
 }

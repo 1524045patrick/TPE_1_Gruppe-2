@@ -83,6 +83,8 @@ public final class Waehrung extends Waehrungen {
 
 	}
 	
+	
+	//TODO Umrechnung der Anfangs in die Zielwährung
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
