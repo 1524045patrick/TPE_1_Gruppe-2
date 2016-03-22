@@ -3,12 +3,53 @@ package Klassen;
 /**
  * 
  * @author ${Patrick Hentschel 1524045}
- * @category Betragsklasse verwaltet die Waehrung, sowie den Kontostand, mittels
+ * Betragsklasse verwaltet die Waehrung, sowie den Betrag, mittels
  *           folgender Funktionen.
  */
 public final class Betrag {
 	private long betrag;
 	private String waehrung;
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (betrag ^ (betrag >>> 32));
+		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	//TODO Vergleich von Währungen if(){umrechnen()}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Betrag)) {
+			return false;
+		}
+		Betrag other = (Betrag) obj;
+		if (betrag != other.betrag) {
+			return false;
+		}
+		if (waehrung == null) {
+			if (other.waehrung != null) {
+				return false;
+			}
+		} else if (!waehrung.equals(other.waehrung)) {
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * Der Konstruktor der Klasse Betrag
@@ -22,8 +63,7 @@ public final class Betrag {
 
 	public Betrag(double betrag, String waehrung) {
 		// TODO ausgabe in hundertstel
-
-		this.betrag = (long) betrag;
+		this.betrag = (long)(betrag * 100);
 		this.waehrung = waehrung;
 
 	}
@@ -44,26 +84,7 @@ public final class Betrag {
 
 	}
 
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
-	 *         ob der Kontostand positiv oder negativ ist mittels 1 oder -1
-	 *         sollte der kontostand genau 0 sein so wird auch eine 0
-	 *         zurueckgegeben
-	 */
-	public int getVorzeichen() {
-		if (betrag >= 1) {
-			return 1;
-		} else if (betrag == 0) {
-			return 0;
-		}
-		if (betrag < 1) {
-			return -1;
-		}
-		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
-		return -0;
-	}
-
+	
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
@@ -102,8 +123,31 @@ public final class Betrag {
 	public void setWaehrung(String waehrung) {
 		this.waehrung = waehrung;
 	}
+	
 
-	// TODO die arithmetischen Operationen auf den Betrag oder seperat ?
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
+	 *         ob der Kontostand positiv oder negativ ist mittels 1 oder -1
+	 *         sollte der kontostand genau 0 sein so wird auch eine 0
+	 *         zurueckgegeben
+	 */
+	public int getVorzeichen() {
+		if (betrag >= 1) {
+			return 1;
+		} else if (betrag == 0) {
+			return 0;
+		}
+		if (betrag < 1) {
+			return -1;
+		}
+		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
+		System.out.println("Prüfen Sie bitte Ihre Eingabe.");
+		return -0;
+	}
+
+
+ 
 	/**
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param a
@@ -112,8 +156,9 @@ public final class Betrag {
 	 *            zweite Variable zur Addition
 	 * @return gibt das Ergebnis der Addition als summe aus
 	 */
-	public long addiere(long a, long b) {
-		this.betrag += a + b;
+	// TODO Beträge addieren mit Abfrage nach gleicher Währung?
+	public long addiere(Betrag b) {
+		this.betrag += b.betrag;
 		return this.betrag;
 	}
 
@@ -125,8 +170,8 @@ public final class Betrag {
 	 *            dem Wert b subtrahiert
 	 * @return
 	 */
-	public long subtrahiere(long a, long b) {
-		this.betrag += a - b;
+	public long subtrahiere(Betrag b) {
+		this.betrag = this.betrag - b.betrag;
 		return this.betrag;
 	}
 
@@ -139,26 +184,26 @@ public final class Betrag {
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 
-	// TODO multiplziere double fehler bei der multiplikation mit betrag
-	// IMMERNOCH FALSCH
-	public double multipliziereDouble(Betrag a, Betrag b) {
+	// TODO multiplziere long funktioniert aber bei double gibt es einen fehler Teilung durch 100?
+	public double multipliziere(Betrag b) {
 		// Rundungsfehler
-		this.betrag = betrag * ((a.getBetrag() * b.getBetrag()));
+		this.betrag = this.betrag * b.getBetrag();
 		return this.betrag;
 	}
 
 	/**
 	 * @author ${Patrick Hentschel 1524045}
+	 * 
 	 * @param a
 	 *            Multiplikation mittels zweier int Werte
 	 * @param b
 	 *            zweites benoetigtes Objekt fuer die Multiplikation
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
-	public long multipliziereLong(Betrag a,Betrag b) {
-		this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
-		return this.betrag;
-	}
+	//public long multipliziereLong(Betrag a, Betrag b) {
+	//	this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
+	//	return this.betrag;
+	//}
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
