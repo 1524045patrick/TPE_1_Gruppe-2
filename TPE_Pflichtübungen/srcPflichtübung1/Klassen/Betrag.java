@@ -90,7 +90,7 @@ public final class Betrag {
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt den Betrag des Objekts Betrag zurück
+	 * @return gibt den Betrag des Objekts Betrag zurï¿½ck
 	 */
 	public double getBetrag() {
 		return betrag;
@@ -100,7 +100,7 @@ public final class Betrag {
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param betrag
-	 *            gibt die Moeglichkeit den Betrag des Objektes Betrag zu ändern
+	 *            gibt die Moeglichkeit den Betrag des Objektes Betrag zu ï¿½ndern
 	 */
 	public void setBetrag(long betrag) {
 		this.betrag = betrag;
@@ -119,8 +119,8 @@ public final class Betrag {
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
 	 * @param waehrung
-	 *            gibt die Möglichkeit die Waehrung des Objektes Betrag zu
-	 *            ändern
+	 *            gibt die Mï¿½glichkeit die Waehrung des Objektes Betrag zu
+	 *            ï¿½ndern
 	 */
 	public void setWaehrung(String waehrung) {
 		this.waehrung = waehrung;
@@ -144,7 +144,7 @@ public final class Betrag {
 			return -1;
 		}
 		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
-		System.out.println("Prüfen Sie bitte Ihre Eingabe.");
+		System.out.println("Prï¿½fen Sie bitte Ihre Eingabe.");
 		return -0;
 	}
 
@@ -158,7 +158,7 @@ public final class Betrag {
 	 *            zweite Variable zur Addition
 	 * @return gibt das Ergebnis der Addition als summe aus
 	 */
-	// TODO Beträge addieren mit Abfrage nach gleicher Währung?
+	// TODO Betrï¿½ge addieren mit Abfrage nach gleicher Wï¿½hrung?
 	public double addiere(Betrag b) {
 		this.betrag += b.betrag;
 		return this.betrag;
@@ -236,5 +236,15 @@ public final class Betrag {
 		long promille = (long) ((betrag * (long) promilleZahl) / 1000);
 		return +promilleZahl + " â€° von " + betrag + " sind " + promille + " " + waehrung;
 	}
+	
+	/*public int getVorzeichen(){
+		if(this.betrag >= 0){
+			return 1;
+		}
+		return -1;
+	}  
+	 */
+	
+	
 
 }
