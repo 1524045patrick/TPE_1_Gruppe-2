@@ -50,8 +50,10 @@ public class Konto {
 	 * 
 	 * @return	Gibt alle vorhanden Werte der ArrayList als String wieder
 	 */
-	public String saldo(){
-			return guthaben.toString();
+	public void saldo(){
+		for(int i : guthaben){
+			System.out.println(i);
+		}
 		
 	}
 	
