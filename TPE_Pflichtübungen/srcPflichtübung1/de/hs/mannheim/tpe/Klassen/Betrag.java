@@ -1,4 +1,4 @@
-package Klassen;
+package de.hs.mannheim.tpe.Klassen;
 
 /**
  * 
@@ -70,21 +70,6 @@ public final class Betrag {
 
 	}
 
-	/**
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param betrag
-	 *            uebergibt den Betrag des Kontostandes als long Wert
-	 * @param waehrung
-	 *            uebergibt die Waehrung des Betrages
-	 * 
-	 */
-	// TODO Ausgabe in Hunderstel
-	//public Betrag(long betrag, String waehrung) {
-
-	//	this.betrag = betrag;
-	//	this.waehrung = waehrung;
-
-	//}
 
 	
 	/**
@@ -93,7 +78,7 @@ public final class Betrag {
 	 * @return gibt den Betrag des Objekts Betrag zur�ck
 	 */
 	public double getBetrag() {
-		return betrag;
+		return betrag / 100;
 	}
 
 	/**
@@ -160,7 +145,7 @@ public final class Betrag {
 	 */
 	// TODO Betr�ge addieren mit Abfrage nach gleicher W�hrung?
 	public double addiere(Betrag b) {
-		this.betrag += b.betrag;
+		this.betrag = this.betrag + b.betrag;
 		return this.betrag;
 	}
 
@@ -194,19 +179,6 @@ public final class Betrag {
 		return (double)this.betrag;
 	}
 
-	/**
-	 * @author ${Patrick Hentschel 1524045}
-	 * 
-	 * @param a
-	 *            Multiplikation mittels zweier int Werte
-	 * @param b
-	 *            zweites benoetigtes Objekt fuer die Multiplikation
-	 * @return gibt das Produkt der Multiplikation aus
-	 */
-	//public long multipliziereLong(Betrag a, Betrag b) {
-	//	this.betrag = this.betrag * (a.getBetrag() * b.getBetrag());
-	//	return this.betrag;
-	//}
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
@@ -236,15 +208,6 @@ public final class Betrag {
 		long promille = (long) ((betrag * (long) promilleZahl) / 1000);
 		return +promilleZahl + " ‰ von " + betrag + " sind " + promille + " " + waehrung;
 	}
-	
-	/*public int getVorzeichen(){
-		if(this.betrag >= 0){
-			return 1;
-		}
-		return -1;
-	}  
-	 */
-	
-	
+
 
 }

@@ -1,4 +1,4 @@
-package Klassen;
+package de.hs.mannheim.tpe.Klassen;
 
 import java.util.*;
 
@@ -10,12 +10,13 @@ public class Main {
 		Betrag m = new Betrag(0.0, "Euro");
 		Konto konto1 = new Konto("Test Testington", "US-Dollar");
 		
+		System.out.println(konto1);
+		
 		konto1.buche(10);
 		konto1.buche(-100);
 		konto1.buche(50);
 		konto1.saldo();
 		System.out.println(konto1.toString());
-		
 		System.out.println("Testende - Konto");
 		
 		System.out.println(m.getVorzeichen());

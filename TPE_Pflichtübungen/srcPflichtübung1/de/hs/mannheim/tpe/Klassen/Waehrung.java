@@ -1,4 +1,4 @@
-package Klassen;
+package de.hs.mannheim.tpe.Klassen;
 
 /**
  * 

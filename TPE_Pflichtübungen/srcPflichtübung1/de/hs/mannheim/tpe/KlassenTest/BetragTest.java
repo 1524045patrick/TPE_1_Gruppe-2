@@ -1,12 +1,12 @@
-package KlassenTest;
-
-import Klassen.*;
+package de.hs.mannheim.tpe.KlassenTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Betragtest {
+import de.hs.mannheim.tpe.Klassen.*;
+
+public class BetragTest {
 
 	/**
 	 * Verschiede Tests auf die Funktion getVorzeichen()

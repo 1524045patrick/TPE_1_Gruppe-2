@@ -1,4 +1,4 @@
-package Klassen;
+package de.hs.mannheim.tpe.Klassen;
 import java.util.ArrayList;
 /**
  * 
@@ -14,16 +14,17 @@ public class Konto {
 	/**
 	 * 
 	 * @param inhaber	Inhaber des Kontos
-	 * @param waehrung	Währung des Kontos
+	 * @param waehrung	Waehrung des Kontos
 	 */
-	Konto(String inhaber, String waehrung){
+	public Konto(String inhaber, String waehrung){
 		this.inhaber = inhaber;
 		this.waehrung = waehrung;
 	}
 	
+	//TODO Authoren
 	/**
-	 * 
-	 * @return	Gibt den Inhaber des Kontos zurück
+	 * @author 
+	 * @return	Gibt den Inhaber des Kontos zurueck
 	 */
 	public String getInhaber(){
 		return inhaber;
@@ -31,7 +32,7 @@ public class Konto {
 	
 	/**
 	 * 
-	 * @return	Gibt die Währung des Kontos zurück
+	 * @return	Gibt die Waehrung des Kontos zurueck
 	 */
 	public String getWaehrung(){
 		return waehrung;
@@ -39,7 +40,7 @@ public class Konto {
 	
 	/**
 	 * 
-	 * @param a	Übergibt einen double-Wert der auf der ArrayList hinzugefügt
+	 * @param a	uebergibt einen double-Wert der auf der ArrayList hinzugefuegt
 	 * 			wird
 	 */
 	public void buche(double a){
@@ -71,7 +72,7 @@ public class Konto {
 		
 	
 	/**
-	 * 		Gibt das gesamte Konto aus mit Inhaber,Währung und Buchungen
+	 * 		Gibt das gesamte Konto aus mit Inhaber,Waehrung und Buchungen
 	 */
 	public String toString(){
 		System.out.println("Kontoinhaber :"+inhaber);
