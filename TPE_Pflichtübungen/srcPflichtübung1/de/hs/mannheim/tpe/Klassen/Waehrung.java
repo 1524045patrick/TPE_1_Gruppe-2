@@ -84,20 +84,43 @@ public final class Waehrung extends Waehrungen {
 	}
 	
 	
-	//TODO Umrechnung der Anfangs in die Zielwährung
+	
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * @param betrag
-	 * @param zielWaehrung
+	 * @param b
+	 *            bekommt ein Objekt uebergeben welches den Betrag + seine
+	 *            Waehrung angibt
+	 * @return schreibt die Waehrungen alle in Dollar um und rechnet den Betrag
+	 *         dieser Waehrung mittels Wechselkurs aus und gibt ihn zurueck
 	 */
 	
-	
-	public void umrechnen(double betrag, long zielWaehrung) {
-		betrag = anfangsWaehrung * kursDollar;
-		zielWaehrung = (long) (betrag * kurs);
-		System.out.println(zielWaehrung);
+	public Betrag wechselkurse(Betrag b) {
+		if (b.getWaehrung().equals(euro)) {
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursEuro);
+			return b;
+		} else if (b.getWaehrung().equals(yen)) {
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursYen);
+			return b;
+		} else if (b.getWaehrung().equals(rubel)) {
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursRubel);
+			return b;
+		} else if (b.getWaehrung().equals(schweizerFranken)) {
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursSchweizerFranken);
+			return b;
+		} else if (b.getWaehrung().equals(dollar)) {
+			return b;
+		} else {
+			System.out.println("Keine vorhandene Waehrung angegeben");
+			System.out.println("Bitte korrigieren.");
+		}
+		return null;
 
 	}
+
 
 }
