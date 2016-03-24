@@ -87,8 +87,8 @@ public final class Betrag {
 	 * @param betrag
 	 *            gibt die Moeglichkeit den Betrag des Objektes Betrag zu ï¿½ndern
 	 */
-	public void setBetrag(long betrag) {
-		this.betrag = betrag;
+	public void setBetrag(double betrag) {
+		this.betrag = betrag * 100;
 	}
 
 	/**
@@ -97,6 +97,7 @@ public final class Betrag {
 	 * @return gibt die Waehrung des entsprechenden Objektes Betrag aus
 	 */
 	public String getWaehrung() {
+		System.out.println("Die Währung des Betrages ist: ");
 		return waehrung;
 	}
 
@@ -143,11 +144,17 @@ public final class Betrag {
 	 *            zweite Variable zur Addition
 	 * @return gibt das Ergebnis der Addition als summe aus
 	 */
-	// TODO Betrï¿½ge addieren mit Abfrage nach gleicher Wï¿½hrung?
+	// TODO addiere bei unterschiedlicher Währung
 	public double addiere(Betrag b) {
-		this.betrag = this.betrag + b.betrag;
-		return this.betrag;
+		if(this.waehrung.equals(b)){
+			this.betrag = this.betrag + b.betrag;
+			return this.betrag;
+		}else{
+			
+			return 0;
+		}
 	}
+
 
 	/**
 	 * @author ${Patrick Hentschel 1524045}
@@ -171,11 +178,10 @@ public final class Betrag {
 	 * @return gibt das Produkt der Multiplikation aus
 	 */
 
-	// TODO multiplziere long funktioniert aber bei double gibt es einen fehler Teilung durch 100?
+	
 	public double multipliziere(Betrag b) {
 		// Rundungsfehler
 		this.betrag = this.betrag * b.getBetrag();
-		this.betrag = (double)this.betrag / 10000;
 		return (double)this.betrag;
 	}
 
@@ -187,7 +193,7 @@ public final class Betrag {
 	 * @param betrag
 	 * @return gibt den Prozentwert zurueck
 	 */
-	// TODO Eventuell muss die Waehrung bei der Ausgabe berÃ¼cksichtigt werden,
+	// TODO Eventuell muss die Waehrung bei der Ausgabe beruecksichtigt werden,
 	// notfalls noch implementieren.
 
 	public String prozent(double prozentZahl) {

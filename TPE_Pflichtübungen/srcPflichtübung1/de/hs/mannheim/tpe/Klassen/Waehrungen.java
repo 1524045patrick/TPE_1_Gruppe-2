@@ -1,13 +1,45 @@
 package de.hs.mannheim.tpe.Klassen;
+
 /**
  * 
- * 
- * @author Mandy Schmitt 1521592
- * @category Waehrungen enthält die Liste der verschiedenen Waehrungen
+ *${Patrick Hentschel 1524045}
+ * @category Waehrungen enthält die Liste der verschiedenen Waehrungen und deren Wechselkurse
  * 
  */
 public class Waehrungen {
-
+	
+	/**
+	 * @author ${Patrick Hentschel 1524045}
+	 * @return 
+	 * 
+	 */
+	
+	public Betrag wechselkurse(Betrag b){
+		if(b.getWaehrung().equals(euro)){
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() *  kursEuro);
+			return b;
+		}else if(b.getWaehrung().equals(yen)){
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursYen); 
+			return b;
+		}else if(b.getWaehrung().equals(rubel)){
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursRubel);
+			return b;
+		}else if(b.getWaehrung().equals(schweizerFranken)){
+			b.setWaehrung(dollar);
+			b.setBetrag(b.getBetrag() * kursSchweizerFranken);
+			return b;
+		}else if(b.getWaehrung().equals(dollar)){
+			return b;
+		}else{
+			System.out.println("Keine vorhandene Waehrung angegeben");
+			System.out.println("Bitte korrigieren.");
+		}
+		return null;
+		
+	}
 		
 	//name
 	String dollar = "Dollar";

@@ -91,6 +91,8 @@ public final class Waehrung extends Waehrungen {
 	 * @param betrag
 	 * @param zielWaehrung
 	 */
+	
+	
 	public void umrechnen(double betrag, long zielWaehrung) {
 		betrag = anfangsWaehrung * kursDollar;
 		zielWaehrung = (long) (betrag * kurs);

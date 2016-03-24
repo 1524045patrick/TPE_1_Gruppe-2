@@ -185,8 +185,8 @@ public class BetragTest {
 	@Test
 	public void testSubtrahiere4() {
 		Betrag sub = new Betrag(0.0, "Euro");
-		Betrag b = new Betrag(-100.00, "Euro");
-		assertEquals(10000, sub.subtrahiere(b), 0.001);
+		Betrag b = new Betrag(-100000.00, "Euro");
+		assertEquals(10000000, sub.subtrahiere(b), 0.001);
 	}
 	/**
 	 * 
@@ -197,27 +197,46 @@ public class BetragTest {
 	//TEST DER METHODE multipliziereDouble()
 	
 	@Test
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * testMultipliziereDouble0() Test auf Multiplikation eines Wertes mal 0 
+	 */
 	public void testMultipliziereDouble0(){
 		Betrag m = new Betrag(5.0, "Euro");
 		Betrag b = new Betrag(0.0, "Euro");
 		assertEquals(0, m.multipliziere(b), 0.001 );
 	}
 	
-	//TODO Double beachten wenn mal 100 genommen wird 
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * testMultipliziereDouble1() Test auf Multiplikation eines double Wertes mit einem long Wert
+	 */
 	@Test
 	public void testMultipliziereDouble1(){
 		Betrag m = new Betrag(1.0, "Euro");
-		Betrag b = new Betrag(5, "Euro");
-		assertEquals(5, m.multipliziere(b), 0.001);
+		Betrag b = new Betrag(5L, "Euro");
+		assertEquals(500, m.multipliziere(b), 0.001);
 	}
 	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * testMultipliziereDouble2() Test auf Multiplikation zweier negativer double Werte
+	 */
 	@Test
 	public void testMultipliziereDouble2(){
 		Betrag m = new Betrag(-1.0, "Euro");
 		Betrag b = new Betrag(-5, "Euro");
-		assertEquals(5, m.multipliziere(b), 0.001);
+		assertEquals(500, m.multipliziere(b), 0.001);
 	}
 	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * testMultipliziereDouble3() Test auf Multiplikation mit 0, erster Betrag = 0 und zweiter eine große Zahl
+	 */
 	@Test
 	public void testMultiplziereDouble3(){
 		Betrag m = new Betrag(0.0, "Euro");
@@ -225,10 +244,15 @@ public class BetragTest {
 		assertEquals(0.0, m.multipliziere(b), 0.001);
 	}
 
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * testMultipliziereDouble4() Test auf Multiplikation im Normalfall
+	 */
 	@Test
 	public void testMultipliziereDouble4(){
 		Betrag m = new Betrag(10.0, "Euro");
 		Betrag b = new Betrag(5.0, "Euro");
-		assertEquals(50, m.multipliziere(b), 0.001);
+		assertEquals(5000.0, m.multipliziere(b), 0.001);
 	}
 }
