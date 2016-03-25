@@ -4,7 +4,7 @@ package de.hs.mannheim.tpe.Klassen;
  * 
  * 
  * @author Mandy Schmitt 1521592
- * @category Waehrung rechnet die Beträge um
+ * @category Waehrung rechnet die Betrï¿½ge um
  * 
  */
 
@@ -39,7 +39,7 @@ public final class Waehrung extends Waehrungen {
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * @return	gibt die eingegebene Zielwaehrung zurück
+	 * @return	gibt die eingegebene Zielwaehrung zurï¿½ck
 	 */
 	public long getZielWaehrung() {
 		return zielWaehrung;
@@ -66,7 +66,7 @@ public final class Waehrung extends Waehrungen {
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt das Kürzel der Währung aus
+	 * @return gibt das Kï¿½rzel der Wï¿½hrung aus
 	 */
 	public String getKuerzel() {
 		return kuerzel;
@@ -94,6 +94,7 @@ public final class Waehrung extends Waehrungen {
 	 * @return schreibt die Waehrungen alle in Dollar um und rechnet den Betrag
 	 *         dieser Waehrung mittels Wechselkurs aus und gibt ihn zurueck
 	 */
+	//TODO keine Konsolenausgabe, auÃŸer bei der Klasse Konto.
 	
 	public Betrag wechselkurse(Betrag b) {
 		if (b.getWaehrung().equals(euro)) {

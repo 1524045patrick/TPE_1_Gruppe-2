@@ -43,7 +43,17 @@ public class KontoTest {
 
 	@Test
 	public void testGesamt() {
-		fail("Not yet implemented");
+		Konto test = new Konto("Test Testington", "Dollar");
+		test.buche(99.01);
+		test.buche(0.89);
+		assertEquals(99.9, test.gesamt(), 0);
+	}
+	@Test
+	public void testGesamt2(){
+		Konto test = new Konto("Test Testington", "Yen");
+		test.buche(99.99);
+		test.buche(-0.99);
+		assertEquals(99.00, test.gesamt(), 0);
 	}
 
 	@Test

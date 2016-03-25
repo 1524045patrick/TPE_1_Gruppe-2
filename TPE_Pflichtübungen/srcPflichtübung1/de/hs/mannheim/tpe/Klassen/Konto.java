@@ -11,7 +11,7 @@ public class Konto {
 
 	String inhaber;
 	String waehrung;
-	ArrayList<Integer> guthaben = new ArrayList<Integer>();
+	ArrayList<Double> guthaben = new ArrayList<Double>();
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
@@ -49,7 +49,7 @@ public class Konto {
 	 *            wird
 	 */
 	public void buche(double a) {
-		guthaben.add((int) a);
+		guthaben.add(a);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Konto {
 	 * @return Gibt alle vorhanden Werte der ArrayList als String wieder
 	 */
 	public void saldo() {
-		for (int i : guthaben) {
+		for (double i : guthaben) {
 			System.out.println(i);
 		}
 
@@ -68,8 +68,8 @@ public class Konto {
 	 * @return Gibt die Summe der gesamten Buchungen zurück
 	 */
 	public double gesamt() {
-		double summe = 0;
-		for (int i : guthaben) {
+		double summe = 0.0;
+		for (double i : guthaben) {
 			summe += i;
 		}
 		return summe;
