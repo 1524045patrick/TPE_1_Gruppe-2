@@ -1,190 +1,104 @@
 package de.hs.mannheim.tpe.Klassen;
 
-/**
- * 
- * @author ${Patrick Hentschel 1524045}
- * Betragsklasse verwaltet die Waehrung, sowie den Betrag, mittels
- *           folgender Funktionen.
- */
-public final class Betrag {
-	private double betrag;
+public class Betrag {
+
+	private long betrag;
 	private String waehrung;
 
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(betrag);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Betrag)) {
-			return false;
-		}
-		Betrag other = (Betrag) obj;
-		if (Double.doubleToLongBits(betrag) != Double.doubleToLongBits(other.betrag)) {
-			return false;
-		}
-		if (waehrung == null) {
-			if (other.waehrung != null) {
-				return false;
-			}
-		} else if (!waehrung.equals(other.waehrung)) {
-			return false;
-		}
-		return true;
-	}
-
 	/**
-	 * Der Konstruktor der Klasse Betrag
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
+	 * @author Patrick Hentschel, 1524045
 	 * @param betrag
-	 *            uebergibt den Betrag des Kontostandes als double Wert
+	 *            der Betrag wird als long Uebergabeparameter uebergeben
 	 * @param waehrung
-	 *            uebergibt die Waehrung des Betrages
+	 *            sowie die Waehrung des Betrages
 	 */
-
-	public Betrag(double betrag, String waehrung) {
-		// TODO ausgabe in hundertstel
-		this.betrag = (long)(betrag * 100);
+	public Betrag(long betrag, String waehrung) {
+		this.betrag = betrag;
 		this.waehrung = waehrung;
-
 	}
 
-
-	
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt den Betrag des Objekts Betrag zurï¿½ck
+	 * @author Patrick Hentschel, 1524045
+	 * @param betrag
+	 *            der Betrag wird als double Uebergabeparameter uebergeben und
+	 *            in long umgewandelt unter beruecksichtigung von 2
+	 *            Nachkommastellen
+	 * @param waehrung
+	 *            die Waehrung des Betrages wird hier mit uebergeben
+	 */
+	public Betrag(double betrag, String waehrung) {
+		this.betrag = (long) (betrag * 100);
+		this.waehrung = waehrung;
+	}
+
+	/**
+	 * @return the betrag
 	 */
 	public double getBetrag() {
 		return betrag / 100;
 	}
 
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param betrag
-	 *            gibt die Moeglichkeit den Betrag des Objektes Betrag zu ï¿½ndern
-	 */
-	public void setBetrag(double betrag) {
-		this.betrag = betrag * 100;
-	}
-
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt die Waehrung des entsprechenden Objektes Betrag aus
+	 * @return the waehrung
 	 */
 	public String getWaehrung() {
-		System.out.println("Die Währung des Betrages ist: ");
 		return waehrung;
 	}
 
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param waehrung
-	 *            gibt die Mï¿½glichkeit die Waehrung des Objektes Betrag zu
-	 *            ï¿½ndern
+	 * @author Patrick Hentschel, 1524045 getVorzeichen() prueft ob der Betrag
+	 *         groesser oder kleiner Null ist und gibt dementsprechend 1 oder -1
+	 *         aus
 	 */
-	public void setWaehrung(String waehrung) {
-		this.waehrung = waehrung;
-	}
-	
 
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045} die Methode getVorzeichen gibt aus
-	 *         ob der Kontostand positiv oder negativ ist mittels 1 oder -1
-	 *         sollte der kontostand genau 0 sein so wird auch eine 0
-	 *         zurueckgegeben
-	 */
 	public int getVorzeichen() {
-		if (betrag >= 1) {
+		if (this.betrag >= 0) {
 			return 1;
-		} else if (betrag == 0) {
-			return 0;
-		}
-		if (betrag < 1) {
+		} else {
 			return -1;
 		}
-		System.out.println("Fehler Ihr Kontostand ist weder positiv,negativ noch gleich 0.");
-		System.out.println("Prï¿½fen Sie bitte Ihre Eingabe.");
-		return -0;
 	}
 
-
- 
 	/**
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param a
-	 *            erste Variable die addiert werden kann
+	 * @author Patrick Hentschel, 1524045
 	 * @param b
-	 *            zweite Variable zur Addition
-	 * @return gibt das Ergebnis der Addition als summe aus
+	 *            uebergibt ein Objekt und addiert den Betrag des Objektes auf
+	 *            das vorhandene Objekt hinzu
+	 * @return gibt den Betrag als double-Wert mit 2 Nachkommastellen aus
 	 */
-	// TODO addiere bei unterschiedlicher Währung
-	public double addiere(Betrag b) {
-		if(this.waehrung.equals(b)){
-			this.betrag = this.betrag + b.betrag;
-			return this.betrag;
-		}else{
-			
-			return 0;
-		}
+
+	public double addieren(Betrag b) {
+		this.betrag = this.betrag + b.betrag;
+		return ((double) this.betrag / 100);
+
 	}
 
-
 	/**
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param a
-	 *            der Wert a wird von
+	 * 
+	 * @author Patrick Hentschel, 1524045
 	 * @param b
-	 *            dem Wert b subtrahiert
-	 * @return
+	 *            uebegibt ein Objekt und subtrahiert davon den Betrag des
+	 *            Objektes von dem vorhandenen Objekt
+	 * @return gibt den Betrag als double-Wert mit 2 Nachkommastellen aus
 	 */
 	public double subtrahiere(Betrag b) {
 		this.betrag = this.betrag - b.betrag;
-		return this.betrag;
+		return ((double) this.betrag / 100);
 	}
 
 	/**
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param a
-	 *            Multiplikation mittels double Werten
+	 * 
+	 * @author Patrick Hentschel, 1524045
 	 * @param b
-	 *            zweite benoetigte Variable fuer die Multiplikation
-	 * @return gibt das Produkt der Multiplikation aus
+	 *            uebergibt eine double Zahl als Parameter und multipliziert
+	 *            diese mit dem vorhandenem Betrag
+	 * @return gibt den multiplzierten Betrag als double-Wert mit 2
+	 *         Nachkommastellen aus
 	 */
-
-	
-	public double multipliziere(Betrag b) {
-		// Rundungsfehler
-		this.betrag = this.betrag * b.getBetrag();
-		return (double)this.betrag;
+	public double multipliziere(double b) {
+		this.betrag = (long) (this.betrag * b);
+		return ((double) this.betrag / 100);
 	}
-
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
@@ -212,8 +126,56 @@ public final class Betrag {
 
 	public String promille(double promilleZahl) {
 		long promille = (long) ((betrag * (long) promilleZahl) / 1000);
-		return +promilleZahl + " â€° von " + betrag + " sind " + promille + " " + waehrung;
+		return +promilleZahl + " ‰ von " + betrag + " sind " + promille + " " + waehrung;
 	}
 
+	/**
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 * @param b
+	 *            uebergibt eine int Zahl als Parameter und multipliziert diese
+	 *            mit dem vorhandenem Betrag
+	 * @return gibt den multiplizierten Betrag als double-Wert mit 2
+	 *         Nachkommastellen aus
+	 */
+	public double multiplziere(int b) {
+		this.betrag = (long) (this.betrag * b);
+		return ((double) this.betrag / 100);
+	}
+
+	/**
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 * @return gibt den Wert eine ganzzahlige Zahl aus, die vor dem Komma steht
+	 */
+	public long getVorkomma() {
+		long temp;
+		temp = this.betrag / 100;
+		return temp;
+	}
+
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @return gibt die Nachkommastellen als integer Zahl aus zwischen 0 und 99
+	 */
+	public int getNachkomma() {
+		double temp;
+		temp = ((double) this.betrag / 100) - (this.betrag / 100);
+		temp = ((double) Math.round(temp * 100)) / 100;
+		temp = temp * 100;
+		return (int) temp;
+	}
+
+	/**
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 * @return gibt den Betrag als Double Wert auf 2 Nachkommastellen genau aus
+	 */
+	public double getAsDouble() {
+		double temp;
+		temp = ((double) this.betrag / 100);
+		temp = ((double) Math.round(this.betrag * 100) / 100);
+		return temp / 100;
+	}
 
 }

@@ -1,127 +1,150 @@
 package de.hs.mannheim.tpe.Klassen;
 
-/**
- * 
- * 
- * @author Mandy Schmitt 1521592
- * @category Waehrung rechnet die Betrï¿½ge um
- * 
- */
 
-public final class Waehrung extends Waehrungen {
+public class Waehrung extends Waehrungen {
 
-	private String name;
-	private String kuerzel;
-	private long kurs;
-	private long zielWaehrung;
-	private double betrag;
-	private double anfangsWaehrung;
+	private final double kurs;
+	private final String name;
+	private final String kuerzel;
 
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt die Waehrung vor der Umrechnung aus
+	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
+	 * @return the kurs
 	 */
-	public double getAnfangsWaehrung() {
-		return anfangsWaehrung;
-
+	public double getKurs() {
+		return kurs;
 	}
 
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param zielWaehrung
-	 *            man gibt an in welche Waehrung man sein Geld wechseln moechte
-	 */
-	public void setZielWaehrung(long zielWaehrung) {
-		this.zielWaehrung = zielWaehrung;
-	}
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return	gibt die eingegebene Zielwaehrung zurï¿½ck
-	 */
-	public long getZielWaehrung() {
-		return zielWaehrung;
-	}
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return	gibt den momentanen Betrag des Kontos aus
-	 */
-	public double getBetrag() {
-		return betrag;
-	}
-	
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt den Namen des Kontoinhabers aus
+	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
+	 * @return the name
 	 */
 	public String getName() {
 		return name;
-
 	}
-	
+
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt das Kï¿½rzel der Wï¿½hrung aus
+	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
+	 * @return the kuerzel
 	 */
 	public String getKuerzel() {
 		return kuerzel;
+	}
+
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @param name
+	 *            enthält den Namen der Waehrung
+	 * @param kuerzel
+	 *            enthält das Kuerzel der Waehrung
+	 * @param kurs
+	 *            enthält den Wechselkurs mit 4 Nachkommastellen
+	 */
+	public Waehrung(String name, String kuerzel, double kurs) {
+
+		this.name = name;
+		this.kuerzel = kuerzel;
+		this.kurs = kurs;
 
 	}
-	
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @return gibt den Wechselkurs aus
-	 */
-	public long getKurs() {
-		return kurs;
 
-	}
-	
-	
-	
 	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * @param b
-	 *            bekommt ein Objekt uebergeben welches den Betrag + seine
-	 *            Waehrung angibt
-	 * @return schreibt die Waehrungen alle in Dollar um und rechnet den Betrag
-	 *         dieser Waehrung mittels Wechselkurs aus und gibt ihn zurueck
+	 * @author Patrick Hentschel, 1524045
+	 * @param this.name
+	 *            gibt den Namen der Waehrung aus
+	 * @param this.kuerzel
+	 *            gibt das Kuerzel der Waehrung aus
+	 * @param this.kurs
+	 *            gibt den Wechselkurs
 	 */
-	//TODO keine Konsolenausgabe, auÃŸer bei der Klasse Konto.
-	
-	public Betrag wechselkurse(Betrag b) {
-		if (b.getWaehrung().equals(euro)) {
-			b.setWaehrung(dollar);
-			b.setBetrag(b.getBetrag() * kursEuro);
-			return b;
-		} else if (b.getWaehrung().equals(yen)) {
-			b.setWaehrung(dollar);
-			b.setBetrag(b.getBetrag() * kursYen);
-			return b;
-		} else if (b.getWaehrung().equals(rubel)) {
-			b.setWaehrung(dollar);
-			b.setBetrag(b.getBetrag() * kursRubel);
-			return b;
-		} else if (b.getWaehrung().equals(schweizerFranken)) {
-			b.setWaehrung(dollar);
-			b.setBetrag(b.getBetrag() * kursSchweizerFranken);
-			return b;
-		} else if (b.getWaehrung().equals(dollar)) {
-			return b;
-		} else {
-			System.out.println("Keine vorhandene Waehrung angegeben");
-			System.out.println("Bitte korrigieren.");
+	public String toString() {
+		return this.name + this.kuerzel + " 1$ = " + this.kurs;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((kuerzel == null) ? 0 : kuerzel.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(kurs);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	/**
+	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
+	 * @equals(Object obj) vergleicht zwei Objekte auf Gleichheit
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
 		}
-		return null;
-
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Waehrung)) {
+			return false;
+		}
+		Waehrung other = (Waehrung) obj;
+		if (kuerzel == null) {
+			if (other.kuerzel != null) {
+				return false;
+			}
+		} else if (!kuerzel.equals(other.kuerzel)) {
+			return false;
+		}
+		if (Double.doubleToLongBits(kurs) != Double.doubleToLongBits(other.kurs)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		return true;
 	}
 
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @param betrag
+	 *            enthält den Betrag der in die zielwaehrung umgerechnet werden
+	 *            soll als long
+	 * @param waehrungAktuell
+	 *            enthält die zielwaehrung in die umgerechnet werden soll
+	 */
+	public long umrechnen(long betrag, String waehrungAktuell) {
+		if (waehrungAktuell.equals("Euro")) {
+			betrag = (long) (betrag * 1.2690);
+			return betrag;
+		} else if (waehrungAktuell.equals("Rubel")) {
+			betrag = (long) (betrag * 0.0255);
+			return betrag;
+		} else if (waehrungAktuell.equals("Yen")) {
+			betrag = (long) (betrag * 0.0091);
+			return betrag;
+		} else if (waehrungAktuell.equals("Schweizer Franken")) {
+			betrag = (long) (betrag * 1.0509);
+			return betrag;
+		} else if (waehrungAktuell.equals("Dollar")) {
+			return betrag;
+		}
+		return betrag;
+	}
 
 }

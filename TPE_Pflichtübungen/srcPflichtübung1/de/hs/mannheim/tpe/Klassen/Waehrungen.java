@@ -1,47 +1,30 @@
 package de.hs.mannheim.tpe.Klassen;
 
-/**
- * 
- * ${Patrick Hentschel 1524045}
- * 
- * @category Waehrungen enthält die Liste der verschiedenen Waehrungen und deren
- *           Wechselkurse
- * 
- */
 public class Waehrungen {
-
 	/**
-	 * @author ${Patrick Hentschel 1524045} die Variablen fuer den vollen Namen
-	 *         der Waehrungen
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 * @param betrag
+	 *            uebergibt den Betrag als Parameter der in die Zielwaehrung
+	 *            umgerechnet werden soll
+	 * @param zielwaehrung
+	 *            uebergibt den String als Parameter in welche Waehrung der
+	 *            Betrag umgerechnet werden soll
+	 * @return gibt den umgerechneten Betrag als Ergebnis zurück
 	 */
-
-	String dollar = "Dollar";
-	String euro = "Euro";
-	String yen = "Yen";
-	String rubel = "Rubel";
-	String schweizerFranken = "Schweizer Franken";
-
-	/**
-	 * @author ${Patrick Hentschel 1524045} die Variablen fuer die Kürzel der
-	 *         Waehrungen
-	 */
-	String $ = "$";
-	String € = "€";
-	String Y = "Y";
-	String RUB = "RUB";
-	String CHF = "CHF";
-
-	/**
-	 * @author ${Patrick Hentschel 1524045} die Variablen fuer die jeweiligen
-	 *         Wechselkurse
-	 */
-
-	public double kursDollar = 1.0000;
-	public double kursEuro = 1.2690;
-	public double kursYen = 0.0091;
-	public double kursRubel = 0.0255;
-	public double kursSchweizerFranken = 1.0509;
-
-	
+	public static long umrechnenZielwaehrung(long betrag, String zielwaehrung) {
+		if (zielwaehrung.equals("Euro")) {
+			betrag = (long) ((long) betrag * 0.7880);
+		} else if (zielwaehrung.equals("Rubel")) {
+			betrag = (long) ((long) betrag * 39.2156);
+		} else if (zielwaehrung.equals("Yen")) {
+			betrag = (long) ((long) betrag * 109.8901);
+		} else if (zielwaehrung.equals("Schweizer Franken")) {
+			betrag = (long) ((long) betrag * 0.9515);
+		} else if (zielwaehrung.equals("Dollar")) {
+			return betrag;
+		}
+		return betrag;
+	}
 
 }
