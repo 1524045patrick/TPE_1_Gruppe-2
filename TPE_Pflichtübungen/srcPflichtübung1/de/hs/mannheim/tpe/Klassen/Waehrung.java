@@ -1,6 +1,5 @@
 package de.hs.mannheim.tpe.Klassen;
 
-
 public class Waehrung extends Waehrungen {
 
 	private final double kurs;
@@ -58,7 +57,7 @@ public class Waehrung extends Waehrungen {
 	 *            gibt den Wechselkurs
 	 */
 	public String toString() {
-		return this.name + this.kuerzel + " 1$ = " + this.kurs;
+		return this.name + this.kuerzel + " 1 $ = " + this.kurs;
 	}
 
 	/*
@@ -123,10 +122,11 @@ public class Waehrung extends Waehrungen {
 	/**
 	 * @author Patrick Hentschel, 1524045
 	 * @param betrag
-	 *            enthält den Betrag der in die zielwaehrung umgerechnet werden
-	 *            soll als long
+	 *            enthält den Betrag der in Dollar umgerechnet werden soll als
+	 *            long
 	 * @param waehrungAktuell
-	 *            enthält die zielwaehrung in die umgerechnet werden soll
+	 *            enthält die aktuelle Waehrung die in Dollar umgerechnet werden
+	 *            soll
 	 */
 	public long umrechnen(long betrag, String waehrungAktuell) {
 		if (waehrungAktuell.equals("Euro")) {

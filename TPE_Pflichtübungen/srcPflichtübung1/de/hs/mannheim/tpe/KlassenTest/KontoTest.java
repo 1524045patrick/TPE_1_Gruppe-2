@@ -7,11 +7,17 @@ import org.junit.Test;
 import de.hs.mannheim.tpe.Klassen.Konto;
 
 public class KontoTest {
-
-	@Test
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode Equals
+	 */
+	@Test	
 	public void testKonto() {
 		Konto test = new Konto("Test", "Euro");
-		test.equals(test);
+		Konto test1 = new Konto("Test", "Euro");
+		assertEquals(true, test.equals(test1));
 	}
 
 	@Test

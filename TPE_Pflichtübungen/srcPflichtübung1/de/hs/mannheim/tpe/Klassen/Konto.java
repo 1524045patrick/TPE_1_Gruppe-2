@@ -9,6 +9,59 @@ import java.util.ArrayList;
  */
 public class Konto {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((guthaben == null) ? 0 : guthaben.hashCode());
+		result = prime * result + ((inhaber == null) ? 0 : inhaber.hashCode());
+		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
+		return result;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Konto)) {
+			return false;
+		}
+		Konto other = (Konto) obj;
+		if (guthaben == null) {
+			if (other.guthaben != null) {
+				return false;
+			}
+		} else if (!guthaben.equals(other.guthaben)) {
+			return false;
+		}
+		if (inhaber == null) {
+			if (other.inhaber != null) {
+				return false;
+			}
+		} else if (!inhaber.equals(other.inhaber)) {
+			return false;
+		}
+		if (waehrung == null) {
+			if (other.waehrung != null) {
+				return false;
+			}
+		} else if (!waehrung.equals(other.waehrung)) {
+			return false;
+		}
+		return true;
+	}
+
 	String inhaber;
 	String waehrung;
 	ArrayList<Double> guthaben = new ArrayList<Double>();

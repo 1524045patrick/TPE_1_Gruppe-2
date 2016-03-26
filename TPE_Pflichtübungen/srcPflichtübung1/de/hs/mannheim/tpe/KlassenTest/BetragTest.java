@@ -41,7 +41,7 @@ public class BetragTest {
 	@Test
 	public void testGetVorzeichen2() {
 		Betrag nullBetrag = new Betrag(0.0, "Euro");
-		assertEquals(0, nullBetrag.getVorzeichen());
+		assertEquals(1, nullBetrag.getVorzeichen());
 	}
 
 	/**
@@ -66,67 +66,89 @@ public class BetragTest {
 		assertEquals(-1, neglong.getVorzeichen());
 	}
 
-	// TESTS DER METHODE ADDIERE()
-
+	//TODO TESTS DER METHODE ADDIEREN()
+	
 	/**
-	 * @author ${Patrick Hentschel 1524045} Test der Methode addiere() bei
-	 *         Betrag = 0
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test mittels zweier Double-Werten bei der Addition
 	 */
 	@Test
-	public void testAddiere0() {
-		Betrag addition = new Betrag(0.0, "Euro");
+	public void testAddieren0(){
+		Betrag addieren = new Betrag(15.0, "Euro");
 		Betrag b = new Betrag(5.0, "Euro");
-		assertEquals(500, addition.addiere(b), 0.1);
+		assertEquals(20.0, addieren.addieren(b), 0.001);
 	}
-
+	
 	/**
-	 * @author ${Patrick Hentschel 1524045} Test der Methode addiere() bei
-	 *         bereits vorhandenem Betrag = 53
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test mittels zweier Long-Werten bei der Addition
 	 */
 	@Test
-	public void testAddiere1() {
-		Betrag addition = new Betrag(53.0, "Euro");
-		Betrag  b = new Betrag(0.07, "Euro");
-		assertEquals(5307, addition.addiere(b), 0.001);
+	public void testAddieren1(){
+		Betrag addieren = new Betrag(15L, "Euro");
+		Betrag b = new Betrag(5L, "Euro");
+		assertEquals(20L, addieren.addieren(b), 0.001);
 	}
-
+	
 	/**
-	 * @author ${Patrick Hentschel 1524045} Test der Methode addiere() bei
-	 *         negativ Addition
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test mittels zweier Long-Werten wobei einer negativ ist
 	 */
 	@Test
-	public void testAddiere2() {
-		Betrag additionNeg = new Betrag(10.0, "Euro");
-		Betrag b = new Betrag(-10.00, "Euro");
-		assertEquals(0, additionNeg.addiere(b), 0.001);
+	public void testAddieren2(){
+		Betrag addieren = new Betrag(-15L, "Euro");
+		Betrag b = new Betrag(5L, "Euro");
+		assertEquals(-10L, addieren.addieren(b), 0.001);
 	}
-
+	
 	/**
-	 * @author ${Patrick Hentschel 1524045} Test der Methode addiere() bei 0
-	 *         Addition
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test mittels eines Long-Wertes und eines Double-Wertes und unterschiedlicher Währungen
 	 */
-
 	@Test
-	public void testAddiere3() {
-		Betrag addition0 = new Betrag(0.0, "Euro");
-		Betrag b = new Betrag(0.0, "Euro");
-		assertEquals(0L, addition0.addiere(b), 0.001);
+	public void testAddieren3(){
+		Betrag addieren = new Betrag(-10L, "Euro");
+		Betrag b = new Betrag(10.00, "Dollar");
+		assertEquals(0.00, addieren.addieren(b), 0.001);
 	}
-
+	
+	
 	/**
-	 * @author ${Patrick Hentschel 1524045} Test der Methode addiere() mit
-	 *         negativem Betrag
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test einer positiven Addition mit Long und Double Werten
 	 */
-
 	@Test
-	//TODO Double = 1000 und int oder long = 10 ändern lassen?
-	public void testAddiere4() {
-		Betrag additionErgNeg = new Betrag(0.0, "Euro");
-		Betrag b = new Betrag(-10.00, "Euro");
-		assertEquals(-1000, additionErgNeg.addiere(b), 0.001);
+	public void testAddieren4(){
+		Betrag add = new Betrag(15L, "Euro");
+		Betrag b = new Betrag(5.00, "Euro");
+		assertEquals(20.00, add.addieren(b), 0.001);
 	}
-
-	// TEST DER METHODE SUBTRAHIERE()
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Addition mit 0
+	 */
+	@Test
+	public void testAddieren5(){
+		Betrag add = new Betrag(0L, "Euro");
+		Betrag b = new Betrag(15.00, "Euro");
+		assertEquals(15, add.addieren(b), 0.001);
+	}
+	
+	
+	@Test
+	public void testAddieren6(){
+		Betrag add = new Betrag(0, "Euro");
+		Betrag b = new Betrag(0, "Euro");
+		assertEquals(0, add.addieren(b), 0.001);
+	}
+	// TEST DER METHODE SUBTRAHIEREN()
 
 	/**
 	 * 
@@ -137,7 +159,7 @@ public class BetragTest {
 	public void testSubtrahiere0() {
 		Betrag sub = new Betrag(100.0, "Euro");
 		Betrag b = new Betrag(-98.0, "Euro");
-		assertEquals(200, sub.addiere(b),0.001);
+		assertEquals(2, sub.addieren(b),0.001);
 	}
 
 	/**
@@ -160,7 +182,7 @@ public class BetragTest {
 	public void testSubtrahiere2() {
 		Betrag sub = new Betrag(2.0, "Euro");
 		Betrag b = new Betrag(0.0, "Euro");
-		assertEquals(200, sub.subtrahiere(b), 0.001);
+		assertEquals(2, sub.subtrahiere(b), 0.001);
 	}
 
 	/**
@@ -172,87 +194,318 @@ public class BetragTest {
 	public void testSubtrahiere3() {
 		Betrag sub = new Betrag(1.0, "Euro");
 		Betrag b = new Betrag(10.00, "Euro");
-		assertEquals(-900, sub.subtrahiere(b), 0.001);
+		assertEquals(-9, sub.subtrahiere(b), 0.001);
 	}
 
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * @testSubtrahiere4() Belastungstest --> subtrahiere sollte nicht int als
-	 *                     Rückgabe-Wert enthalten
+	 * @testSubtrahiere4() VorzeichenTest
 	 */
 
 	@Test
 	public void testSubtrahiere4() {
 		Betrag sub = new Betrag(0.0, "Euro");
 		Betrag b = new Betrag(-100000.00, "Euro");
-		assertEquals(10000000, sub.subtrahiere(b), 0.001);
-	}
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * 
-	 */
-	
-	//TEST DER METHODE multipliziereDouble()
-	
-	@Test
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * testMultipliziereDouble0() Test auf Multiplikation eines Wertes mal 0 
-	 */
-	public void testMultipliziereDouble0(){
-		Betrag m = new Betrag(5.0, "Euro");
-		Betrag b = new Betrag(0.0, "Euro");
-		assertEquals(0, m.multipliziere(b), 0.001 );
+		assertEquals(100000.0, sub.subtrahiere(b), 0.001);
 	}
 	
+	
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * testMultipliziereDouble1() Test auf Multiplikation eines double Wertes mit einem long Wert
+	 * @testSubtrahiere5() Subtraktion von 0
 	 */
 	@Test
-	public void testMultipliziereDouble1(){
-		Betrag m = new Betrag(1.0, "Euro");
-		Betrag b = new Betrag(5L, "Euro");
-		assertEquals(500, m.multipliziere(b), 0.001);
+	public void testSubtrahiere5(){
+		Betrag sub = new Betrag(0.0, "Euro");
+		Betrag b = new Betrag(20.00, "Euro");
+		assertEquals(-20, sub.subtrahiere(b), 0.001);
+	}
+	//TODO TEST DER METHODE MULTIPLIZIERE()
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Multiplikation von 1 mal eines Wertes
+	 */
+	@Test
+	public void testMultipliziere0(){
+		Betrag eins = new Betrag(1.0, "Euro");
+		assertEquals(10, eins.multipliziere(10.0), 0.001);
 	}
 	
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * testMultipliziereDouble2() Test auf Multiplikation zweier negativer double Werte
+	 * Multiplikation mit einem Double-Wert
 	 */
 	@Test
-	public void testMultipliziereDouble2(){
-		Betrag m = new Betrag(-1.0, "Euro");
-		Betrag b = new Betrag(-5, "Euro");
-		assertEquals(500, m.multipliziere(b), 0.001);
-	}
-	
-	/**
-	 * 
-	 * @author ${Patrick Hentschel 1524045}
-	 * testMultipliziereDouble3() Test auf Multiplikation mit 0, erster Betrag = 0 und zweiter eine große Zahl
-	 */
-	@Test
-	public void testMultiplziereDouble3(){
-		Betrag m = new Betrag(0.0, "Euro");
-		Betrag b = new Betrag(9000000, "Euro");
-		assertEquals(0.0, m.multipliziere(b), 0.001);
+	public void testMultipliziere1(){
+		Betrag a = new Betrag(1.0, "Euro");
+		assertEquals(15.50, a.multipliziere(15.50),0.001);
 	}
 
 	/**
 	 * 
 	 * @author ${Patrick Hentschel 1524045}
-	 * testMultipliziereDouble4() Test auf Multiplikation im Normalfall
+	 * Multiplikation mit 0
+	 */
+	
+	@Test
+	public void testMultiplizere2(){
+		Betrag a = new Betrag(1.0, "Euro");
+		assertEquals(0.0, a.multipliziere(0), 0.001);
+	}
+	
+	
+	/**
+	 * @author ${Patrick Hentschel 1524045}
+	 * Multiplikation mit 0 im Objekt Betrag
+	 */
+	
+	@Test
+	public void testMultipliziere3(){
+		Betrag a = new Betrag(0, "Euro");
+		assertEquals(0, a.multipliziere(15.98), 0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test mit Multiplikation zweier negativer Zahlen
+	 */
+	
+	@Test
+	public void testMultipliziere4(){
+		Betrag a = new Betrag(-15.0, "Euro");
+		assertEquals(15, a.multipliziere(-1.0), 0.001);
+	}
+	
+	
+	@Test
+	public void testMultipliziere5(){
+		Betrag a = new Betrag(-20, "Euro");
+		assertEquals(-40, a.multipliziere(2.0), 0.001);
+	}
+	//TEST DER METHODE GETWAEHRUNG
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getWaehrung mit "Euro" als erwartetes Ergebnis
 	 */
 	@Test
-	public void testMultipliziereDouble4(){
-		Betrag m = new Betrag(10.0, "Euro");
-		Betrag b = new Betrag(5.0, "Euro");
-		assertEquals(5000.0, m.multipliziere(b), 0.001);
+	public void testGetWaehrung0(){
+		Betrag a = new Betrag(0, "Euro");
+		assertEquals("Euro", a.getWaehrung());
+	}
+	
+	
+	/**
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getWaehrung mit "Yen" als erwartetes Ergebnis
+	 */
+	
+	@Test
+	public void testGetWaehrung1(){
+		Betrag a = new Betrag(15, "Yen");
+		assertEquals("Yen", a.getWaehrung());
+	}
+	
+	//TEST DER METHODE GETVORKOMMA()
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getVorkomma mit 1 als erwartetes Ergebnis
+	 */
+	@Test
+	public void testGetVorkomma0(){
+		Betrag a = new Betrag(1.5, "Euro");
+		assertEquals(1, a.getVorkomma());
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getVorkomma mit -2 als erwartetes Ergebnis
+	 */
+	@Test
+	public void testGetVorkomma1(){
+		Betrag a = new Betrag(-2.05, "Euro");
+		assertEquals(-2, a.getVorkomma());
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getVorkomma mit 0 als erwartetes Ergebnis
+	 */
+	@Test
+	public void testGetVorkomma2(){
+		Betrag a = new Betrag(0.5, "Yen");
+		assertEquals(0, a.getVorkomma());
+	}
+	
+	//TEST DER METHODE GETNACHKOMMA()
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getNachkomma ohne Nachkommastellen 
+	 */
+	@Test
+	public void testGetNachkomma0(){
+		Betrag a = new Betrag(0.00, "Euro");
+		assertEquals(0, a.getNachkomma());
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getNachkomma mit negativer Zahl soll aber positive Nachkommastelle ausgeben 
+	 */
+	@Test
+	public void getNachkomma1(){
+		Betrag a = new Betrag(-23.55, "Dollar");
+		assertEquals(55, a.getNachkomma());
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getNachkomma auf die letzte Nachkommastelle
+	 */
+	@Test
+	public void getNachkomma2(){
+		Betrag a = new Betrag(22.01, "Dollar");
+		assertEquals(1, a.getNachkomma());
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getNachkomma soll nur auf 2 Nachkommastellen genau einen Wert ausgeben
+	 */
+	@Test
+	public void getNachkomma3(){
+		Betrag a = new Betrag(22.002, "Dollar");
+		assertEquals(0, a.getNachkomma());
+	}
+	
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getNachkomma mit negativem Wert und beruecksichtigung von 2 Nachkommastellen
+	 */
+	@Test
+	public void getNachkomma4(){
+		Betrag a = new Betrag(-22.0099, "Dollar");
+		assertEquals(0, a.getNachkomma());
+	}
+	
+	
+	//TEST DER METHODE GETASDOUBLE()
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getAsDouble mit einer einfachen positiven Zahl
+	 */
+	@Test
+	public void getAsDouble0(){
+		Betrag a = new Betrag(1550, "Dollar");
+		assertEquals(1550.0, a.getAsDouble(),0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getAsDouble mit einer Double-Zahl
+	 */
+	@Test
+	public void getAsDouble1(){
+		Betrag a = new Betrag(15.55, "Euro");
+		assertEquals(15.55, a.getAsDouble(), 0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getAsDouble mit einer negativen Long Zahl
+	 */
+	@Test
+	public void getAsDouble2(){
+		Betrag a = new Betrag(-12L, "Euro");
+		assertEquals(-12.00, a.getAsDouble(), 0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode mit einer negativen double-Zahl
+	 */
+	@Test
+	public void getAsDouble3(){
+		Betrag a = new Betrag(-13.05, "Yen");
+		assertEquals(-13.05, a.getAsDouble(), 0.001);
+	}
+	
+	//TEST DER METHODE GETBETRAG()
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getBetrag mit einem Double-Wert
+	 */
+	@Test
+	public void testGetBetrag0(){
+		Betrag a = new Betrag(125.00, "Euro");
+		assertEquals(125.00, a.getBetrag(), 0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getBetrag mit einem Long-Wert
+	 */
+	@Test
+	public void testGetBetrag1(){
+		Betrag a = new Betrag(125L, "Yen");
+		assertEquals(125.0, a.getBetrag(),0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getBetrag mit einem negativem Double-Wert
+	 */
+	@Test
+	public void testGetBetrag2(){
+		Betrag a = new Betrag(-12.55, "Euro");
+		assertEquals(-12.55, a.getBetrag(), 0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getBetrag mit einem negativem Long-Wert
+	 */
+	@Test
+	public void testGetBetrag3(){
+		Betrag a = new Betrag(-12L, "Euro");
+		assertEquals(-12.00, a.getBetrag(),0.001);
+	}
+	
+	/**
+	 * 
+	 * @author ${Patrick Hentschel 1524045}
+	 * Test der Methode getBetrag mit 0 als double-Wert
+	 */
+	@Test
+	public void testGetBetrag4(){
+		Betrag a = new Betrag(0.00, "Rubel");
+		assertEquals(0.00, a.getBetrag(),0.001);
 	}
 }

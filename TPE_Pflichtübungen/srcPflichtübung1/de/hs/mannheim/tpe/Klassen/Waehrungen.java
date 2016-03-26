@@ -1,6 +1,19 @@
 package de.hs.mannheim.tpe.Klassen;
 
 public class Waehrungen {
+	
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * Konstanten 
+	 */
+	protected static final String YEN = "¥";
+	protected static final String DOLLAR = "$";
+	protected static final String EURO = "€";
+	protected static final String SCHWEIZER_FRANKEN = "CHF";
+	protected static final String RUBEL = "RUB";
+	
+	
+	
 	/**
 	 * 
 	 * @author Patrick Hentschel, 1524045

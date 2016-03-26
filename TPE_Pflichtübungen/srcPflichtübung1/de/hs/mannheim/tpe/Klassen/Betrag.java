@@ -13,7 +13,7 @@ public class Betrag {
 	 *            sowie die Waehrung des Betrages
 	 */
 	public Betrag(long betrag, String waehrung) {
-		this.betrag = betrag;
+		this.betrag = betrag * 100;
 		this.waehrung = waehrung;
 	}
 
@@ -35,7 +35,7 @@ public class Betrag {
 	 * @return the betrag
 	 */
 	public double getBetrag() {
-		return betrag / 100;
+		return (double) betrag / 100;
 	}
 
 	/**
@@ -163,6 +163,9 @@ public class Betrag {
 		temp = ((double) this.betrag / 100) - (this.betrag / 100);
 		temp = ((double) Math.round(temp * 100)) / 100;
 		temp = temp * 100;
+		if(temp < 0){
+			temp = temp * (-1);
+		}
 		return (int) temp;
 	}
 
