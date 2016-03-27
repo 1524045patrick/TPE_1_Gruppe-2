@@ -9,9 +9,11 @@ import java.util.ArrayList;
  */
 public class Konto {
 
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -21,11 +23,12 @@ public class Konto {
 		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
 		return result;
 	}
-
+*/
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+/*	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -61,10 +64,11 @@ public class Konto {
 		}
 		return true;
 	}
-
-	String inhaber;
-	String waehrung;
-	ArrayList<Double> guthaben = new ArrayList<Double>();
+*/
+	
+	private String inhaber;
+	private String waehrung;
+	private ArrayList<Double> guthaben = new ArrayList<Double>();
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
@@ -104,23 +108,34 @@ public class Konto {
 	public void buche(double a) {
 		guthaben.add(a);
 	}
+	
+	public double gebuehr(){
+		Betrag test = new Betrag(gesamt(), "");
+		buche(test.promille(2));
+		return test.promille(2);
+	}
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
 	 * @return Gibt alle vorhanden Werte der ArrayList als String wieder
 	 */
 	public void saldo() {
-		for (double i : guthaben) {
-			System.out.println(i);
+		if(guthaben.isEmpty()){
+			System.out.println("Kein Umsatz");
+			return;
 		}
-
+		for (double i : guthaben) {
+			System.out.println(i+ " " +getWaehrung());
+			
+		}
+		
 	}
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
 	 * @return Gibt die Summe der gesamten Buchungen zurück
 	 */
-	public double gesamt() {
+	private double gesamt() {
 		double summe = 0.0;
 		for (double i : guthaben) {
 			summe += i;
@@ -133,13 +148,13 @@ public class Konto {
 	 *         Inhaber,Waehrung und Buchungen
 	 */
 	public String toString() {
-		System.out.println("Kontoinhaber :" + inhaber);
-		System.out.println("Waehrung :" + waehrung);
+		System.out.println("Kontoinhaber :" + getInhaber());
+		System.out.println("Waehrung :" + getWaehrung());
 		System.out.println("-------------");
 		saldo();
 		System.out.println("-------------");
 		System.out.println(gesamt());
-		return null;
+		return "";
 
 	}
 }

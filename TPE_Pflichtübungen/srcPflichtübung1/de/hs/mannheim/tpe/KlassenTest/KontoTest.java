@@ -29,7 +29,7 @@ public class KontoTest {
 	@Test
 	public void testGetWaehrung() {
 		Konto test = new Konto("Test","Euro");
-		assertEquals("Euro", "Euro", test.getWaehrung());
+		assertEquals("Euro", test.getWaehrung());
 	}
 
 
@@ -60,6 +60,14 @@ public class KontoTest {
 		test.buche(99.99);
 		test.buche(-0.99);
 		assertEquals(99.00, test.gesamt(), 0);
+	}
+	
+	@Test
+	public void testGesamt3(){
+		Konto test = new Konto("Test Testington", "Rubel");
+		test.buche(-100.50);
+		test.buche(-1000);
+		assertEquals(-1100.50, test.gesamt(), 0);
 	}
 
 	@Test

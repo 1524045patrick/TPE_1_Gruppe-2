@@ -107,12 +107,10 @@ public class Betrag {
 	 * @param betrag
 	 * @return gibt den Prozentwert zurueck
 	 */
-	// TODO Eventuell muss die Waehrung bei der Ausgabe beruecksichtigt werden,
-	// notfalls noch implementieren.
 
-	public String prozent(double prozentZahl) {
-		long prozent = (long) ((betrag * (long) prozentZahl) / 100);
-		return +prozentZahl + " % von " + betrag + " sind " + prozent + " " + waehrung;
+	public double prozent(double prozentZahl) {
+		double prozent = ((betrag * prozentZahl) / 100);
+		return prozent;
 	}
 
 	/**
@@ -121,12 +119,10 @@ public class Betrag {
 	 * @param betrag
 	 * @return gibt den Promillewert zurueck
 	 */
-	// TODO Eventuell muss die Waehrung bei der Ausgabe berücksichtigt werden,
-	// notfalls noch implementieren.
 
-	public String promille(double promilleZahl) {
-		long promille = (long) ((betrag * (long) promilleZahl) / 1000);
-		return +promilleZahl + " � von " + betrag + " sind " + promille + " " + waehrung;
+	public double promille(double promilleZahl) {
+		double promille =  ((betrag * promilleZahl) / 1000);
+		return promille;
 	}
 
 	/**
@@ -151,6 +147,9 @@ public class Betrag {
 	public long getVorkomma() {
 		long temp;
 		temp = this.betrag / 100;
+		if(temp<0){
+			return -temp;
+		}
 		return temp;
 	}
 
@@ -179,6 +178,14 @@ public class Betrag {
 		temp = ((double) this.betrag / 100);
 		temp = ((double) Math.round(this.betrag * 100) / 100);
 		return temp / 100;
+	}
+	
+	/**
+	 * @author Dennis Szczerbinski, 1521092
+	 * @return	Gibt den Wert des Betrages als String zurück.
+	 */
+	public String toString(){
+		return (getVorzeichen()*getVorkomma())+","+getNachkomma()+" "+getWaehrung();
 	}
 
 }
