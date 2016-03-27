@@ -135,7 +135,7 @@ public class Konto {
 	 * @author Dennis Szczerbinski 1521092
 	 * @return Gibt die Summe der gesamten Buchungen zurück
 	 */
-	private double gesamt() {
+	public double gesamt() {
 		double summe = 0.0;
 		for (double i : guthaben) {
 			summe += i;
