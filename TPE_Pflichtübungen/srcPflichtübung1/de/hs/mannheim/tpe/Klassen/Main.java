@@ -15,9 +15,9 @@ public class Main {
 		//System.out.println(addition.getNachkomma());
 		//System.out.println(addition.getAsDouble());
 		Konto test = new Konto("Blabla", "Euro");
-		//test.buche(23);
-		//System.out.println(test.gesamt());
-		System.out.println(addition.toString());
+		test.buche(23);
+		test.gebuehr();
+		System.out.println(test.toString());
 	}
 
 }

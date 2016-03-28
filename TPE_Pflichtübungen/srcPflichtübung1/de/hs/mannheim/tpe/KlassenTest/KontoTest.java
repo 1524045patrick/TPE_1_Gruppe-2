@@ -43,8 +43,21 @@ public class KontoTest {
 	@Test
 	public void testSaldo() {
 		Konto test = new Konto("Test","Euro");
-		test.buche(10.00);
-		fail("Not yet implemented");
+		assertEquals(0, test.size());
+	}
+	
+	@Test
+	public void testSaldo2(){
+		Konto test = new Konto("Test", "Test");
+		test.buche(1);
+		assertEquals(1, test.size());
+	}
+	
+	public void testSaldo3(){
+		Konto test = new Konto("Test", "Dollar");
+		test.buche(10);
+		test.gebuehr();
+		assertEquals(2, test.size());
 	}
 
 	@Test
@@ -72,7 +85,8 @@ public class KontoTest {
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		Konto test = new Konto("Test", "Euro");
+		assertEquals("",test.toString());
 	}
 
 }

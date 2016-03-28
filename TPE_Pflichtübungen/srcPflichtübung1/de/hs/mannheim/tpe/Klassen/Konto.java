@@ -28,7 +28,7 @@ public class Konto {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-/*	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -64,10 +64,10 @@ public class Konto {
 		}
 		return true;
 	}
-*/
+
 	
 	private String inhaber;
-	private String waehrung;
+	private String waehrung;	
 	private ArrayList<Double> guthaben = new ArrayList<Double>();
 
 	/**
@@ -101,17 +101,19 @@ public class Konto {
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
-	 * @param a
-	 *            uebergibt einen double-Wert der auf der ArrayList hinzugefuegt
-	 *            wird
+	 * @param a uebergibt einen double-Wert der auf der ArrayList hinzugefuegt 
+	 * 			wird
 	 */
 	public void buche(double a) {
 		guthaben.add(a);
 	}
-	
+	/**
+	 * @author Dennis Szczerbinski, 1521092
+	 * @return Gibt den abgebuchten Gebührenwert wieder. 
+	 */
 	public double gebuehr(){
 		Betrag test = new Betrag(gesamt(), "");
-		buche(test.promille(2));
+		buche(-test.promille(2));
 		return test.promille(2);
 	}
 
@@ -128,7 +130,6 @@ public class Konto {
 			System.out.println(i+ " " +getWaehrung());
 			
 		}
-		
 	}
 
 	/**
@@ -156,5 +157,10 @@ public class Konto {
 		System.out.println(gesamt());
 		return "";
 
+	}
+	
+	public int size(){
+		int a=guthaben.size();
+		return a;
 	}
 }
