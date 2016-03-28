@@ -119,7 +119,7 @@ public class Konto {
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
-	 * @return Gibt alle vorhanden Werte der ArrayList als String wieder
+	 * @return Gibt alle vorhanden Werte der ArrayList in der Konsole aus.
 	 */
 	public void saldo() {
 		if(guthaben.isEmpty()){
@@ -134,7 +134,7 @@ public class Konto {
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
-	 * @return Gibt die Summe der gesamten Buchungen zurück
+	 * @return Gibt die Summe der gesamten Buchungen zurück.
 	 */
 	public double gesamt() {
 		double summe = 0.0;
@@ -146,7 +146,7 @@ public class Konto {
 
 	/**
 	 * @author Dennis Szczerbinski 1521092 Gibt das gesamte Konto aus mit
-	 *         Inhaber,Waehrung und Buchungen
+	 *         Inhaber,Waehrung und Buchungen.
 	 */
 	public String toString() {
 		System.out.println("Kontoinhaber :" + getInhaber());
@@ -159,6 +159,10 @@ public class Konto {
 
 	}
 	
+	/**
+	 * @author Dennis Szczerbinski, 1521092
+	 * @return a Diese Methode wird zum Test der saldo()-Methode gebraucht.
+	 */
 	public int size(){
 		int a=guthaben.size();
 		return a;
