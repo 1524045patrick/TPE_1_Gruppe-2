@@ -50,37 +50,11 @@ public class KontoTest {
 	public void testBuche() {
 		Konto test = new Konto("Test","Euro");
 		test.buche(5.00);
-		assertEquals(5.00, test.gesamt(), 0.001);
+		assertEquals(5.00, test.saldo(), 0.001);
 	}
 	
 	
-	/**
-	 * @author Dennis Szczerbinski, 1521092
-	 * 			Indirekter Test der Methode saldo(), hierbei wird die 
-	 * 			größer der ArrayList überprüft, da die Methode den  
-	 * 			Inhalt auf der Konsole ausgibt. Ist die ArrayList leer,
-	 * 			ist kein Element vorhanden und die Größe ist 0.
-	 */
-	@Test
-	public void testSaldo() {
-		Konto test = new Konto("Test","Euro");
-		assertEquals(0, test.size());
-	}
 	
-	@Test
-	public void testSaldo2(){
-		Konto test = new Konto("Test", "Test");
-		test.buche(1);
-		assertEquals(1, test.size());
-	}
-	
-	public void testSaldo3(){
-		Konto test = new Konto("Test", "Dollar");
-		test.buche(10);
-		test.gebuehr();
-		assertEquals(2, test.size());
-	}
-
 	
 	/**
 	 * @author Dennis Szczerbinski, 1521092
@@ -88,37 +62,46 @@ public class KontoTest {
 	 * 			der double-Werte in der ArrrayList wieder.
 	 */
 	@Test
-	public void testGesamt() {
+	public void testSaldo() {
 		Konto test = new Konto("Test Testington", "Dollar");
 		test.buche(99.01);
 		test.buche(0.89);
-		assertEquals(99.9, test.gesamt(), 0);
+		assertEquals(99.9, test.saldo(), 0);
 	}
 	@Test
-	public void testGesamt2(){
+	public void testSaldo2(){
 		Konto test = new Konto("Test Testington", "Yen");
 		test.buche(99.99);
 		test.buche(-0.99);
-		assertEquals(99.00, test.gesamt(), 0);
+		assertEquals(99.00, test.saldo(), 0);
 	}
 	
 	@Test
-	public void testGesamt3(){
+	public void testSaldo3(){
 		Konto test = new Konto("Test Testington", "Rubel");
 		test.buche(-100.50);
 		test.buche(-1000);
-		assertEquals(-1100.50, test.gesamt(), 0);
+		assertEquals(-1100.50, test.saldo(), 0);
 	}
-
 	
 	/**
 	 * @author Dennis Szczerbinski, 1521092
-	 * 			Test der toString() Methode. Bitte nachfragen warum !!!
+	 */
+	@Test
+	public void testGebuehr(){
+		Konto test = new Konto("Test Testington", "Yen");
+		test.buche(10);
+		assertEquals(0.2, test.gebuehr(), 0);
+	}
+	
+	/**
+	 * @author Dennis Szczerbinski, 1521092
+	 * 			Test der toString() Methode. Wird manuell auf der Konsole
+	 * 			ausgegeben.
 	 */
 	@Test
 	public void testToString() {
-		Konto test = new Konto("Test", "Euro");
-		assertEquals("",test.toString());
+		
 	}
 
 }

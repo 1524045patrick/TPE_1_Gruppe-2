@@ -63,7 +63,6 @@ public class Konto {
 		this.waehrung = waehrung;
 	}
 
-	
 	/**
 	 * @author Dennis Szczerbinski 1521092
 	 * @return Gibt den Inhaber des Kontos zurueck
@@ -88,36 +87,22 @@ public class Konto {
 	public void buche(double a) {
 		guthaben.add(a);
 	}
+	
 	/**
 	 * @author Dennis Szczerbinski, 1521092
-	 * @return Gibt den abgebuchten Gebührenwert wieder. 
+	 * @return 	Gibt den abgebuchten Gebührenwert wieder.
+	 * 			in dem Fall werden 2Promille vom Gesamtbetrag abgebucht.
 	 */
 	public double gebuehr(){
-		Betrag test = new Betrag(gesamt(), "");
-		buche(-test.promille(2));
-		return test.promille(2);
-	}
-
-	/**
-	 * @author Dennis Szczerbinski 1521092
-	 * @return Gibt alle vorhanden Werte der ArrayList in der Konsole aus.
-	 */
-	public void saldo() {
-		if(guthaben.isEmpty()){
-			System.out.println("Kein Umsatz");
-			return;
-		}
-		for (double i : guthaben) {
-			System.out.println(i+ " " +getWaehrung());
-			
-		}
+		double promille = saldo() * 0.02;				
+		return promille;
 	}
 
 	/**
 	 * @author Dennis Szczerbinski 1521092
 	 * @return Gibt die Summe der gesamten Buchungen zurück.
 	 */
-	public double gesamt() {
+	public double saldo() {
 		double summe = 0.0;
 		for (double i : guthaben) {
 			summe += i;
@@ -126,26 +111,12 @@ public class Konto {
 	}
 
 	/**
-	 * @author Dennis Szczerbinski 1521092 Gibt das gesamte Konto aus mit
+	 * @author Dennis Szczerbinski 1521092 
+	 * @return Gibt das gesamte Konto aus mit
 	 *         Inhaber,Waehrung und Buchungen.
 	 */
 	public String toString() {
-		System.out.println("Kontoinhaber :" + getInhaber());
-		System.out.println("Waehrung :" + getWaehrung());
-		System.out.println("-------------");
-		saldo();
-		System.out.println("-------------");
-		System.out.println(gesamt());
-		return "";
+		return "Inhaber: " +getInhaber()+"\nWährung: "+getWaehrung()+"\n------------\n"+saldo();
+	}
 
-	}
-	
-	/**
-	 * @author Dennis Szczerbinski, 1521092
-	 * @return a Diese Methode wird zum Test der saldo()-Methode gebraucht.
-	 */
-	public int size(){
-		int a=guthaben.size();
-		return a;
-	}
 }
