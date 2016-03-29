@@ -1,11 +1,13 @@
 package de.hs.mannheim.tpe.Klassen;
 
 public class Waehrung extends Waehrungen {
+	
 
 	private final double kurs;
 	private final String name;
 	private final String kuerzel;
 
+	
 	/**
 	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
 	 * @return the kurs
@@ -57,14 +59,10 @@ public class Waehrung extends Waehrungen {
 	 *            gibt den Wechselkurs
 	 */
 	public String toString() {
-		return this.name + this.kuerzel + " 1 $ = " + this.kurs;
+		return this.name + " 1 $ = " + this.kurs;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
+	
 
 	@Override
 	public int hashCode() {
@@ -78,11 +76,7 @@ public class Waehrung extends Waehrungen {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+
 	/**
 	 * @author Patrick Hentschel, 1524045 (Eclipse generiert)
 	 * @equals(Object obj) vergleicht zwei Objekte auf Gleichheit

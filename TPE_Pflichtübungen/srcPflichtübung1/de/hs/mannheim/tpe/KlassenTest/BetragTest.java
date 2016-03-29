@@ -66,7 +66,7 @@ public class BetragTest {
 		assertEquals(-1, neglong.getVorzeichen());
 	}
 
-	//TODO TESTS DER METHODE ADDIEREN()
+	// TESTS DER METHODE ADDIEREN()
 	
 	/**
 	 * 
@@ -222,7 +222,7 @@ public class BetragTest {
 		Betrag b = new Betrag(20.00, "Euro");
 		assertEquals(-20, sub.subtrahiere(b), 0.001);
 	}
-	//TODO TEST DER METHODE MULTIPLIZIERE()
+	// TEST DER METHODE MULTIPLIZIERE()
 	
 	/**
 	 * 
@@ -334,7 +334,7 @@ public class BetragTest {
 	@Test
 	public void testGetVorkomma1(){
 		Betrag a = new Betrag(-2.05, "Euro");
-		assertEquals(-2, a.getVorkomma());
+		assertEquals(2, a.getVorkomma());
 	}
 	
 	/**

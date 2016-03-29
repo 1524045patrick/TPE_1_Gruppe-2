@@ -10,25 +10,6 @@ import java.util.ArrayList;
 public class Konto {
 
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-/*
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((guthaben == null) ? 0 : guthaben.hashCode());
-		result = prime * result + ((inhaber == null) ? 0 : inhaber.hashCode());
-		result = prime * result + ((waehrung == null) ? 0 : waehrung.hashCode());
-		return result;
-	}
-*/
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
