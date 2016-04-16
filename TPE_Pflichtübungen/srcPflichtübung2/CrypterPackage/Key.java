@@ -2,6 +2,10 @@ package CrypterPackage;
 
 public class Key implements Crypter {
 
+	public Key(String uebergabeKey) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void reset() {
 		// TODO Auto-generated method stub

@@ -4,8 +4,9 @@ public class CrypterCaesar implements Crypter {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param key 
 	 */
-	CrypterCaesar() {
+	CrypterCaesar(String key) {
 		super();
 	}
 

@@ -10,8 +10,8 @@ public class CrypterFactory {
 		return new CrypterXOR();
 	}
 	
-	public static CrypterCeasar creatCEA(String key){
-		return new CrypterCeasar(key);
+	public static CrypterCaesar creatCEA(String key){
+		return new CrypterCaesar(key);
 	}
 
 
