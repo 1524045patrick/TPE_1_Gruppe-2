@@ -1,18 +1,17 @@
 package CrypterPackage;
 
 public class CrypterFactory {
-	
-	public static CrypterSubstitution creatSUB(String key){
+
+	public static CrypterSubstitution creatSUB(String key) {
 		return new CrypterSubstitution(key);
 	}
-	
-	public static CrypterXOR creatXOR(){
+
+	public static CrypterXOR creatXOR() {
 		return new CrypterXOR();
 	}
-	
-	public static CrypterCaesar creatCEA(String key){
+
+	public static CrypterCaesar creatCAE(String key) throws CrypterException {
 		return new CrypterCaesar(key);
 	}
-
 
 }

@@ -5,19 +5,45 @@ public class CrypterCaesar implements Crypter {
 	String rueckgabeString = "";
 	char[] keyCharArray = new char[1];
 
-	CrypterCaesar(String uebergabeKey) {
+	CrypterCaesar(String uebergabeKey) throws CrypterException {
+		uebergabeKey = uebergabeKey.toUpperCase();
+		checkKey(uebergabeKey);
 		Key keyCEA = new Key(uebergabeKey);
 		keyCharArray = keyCEA.key.toCharArray();
 	}
 
 	public String encrypt(String message) throws CrypterException {
-		char[] messageCharArray = message.toCharArray();
-		for (int i = 0; i < messageCharArray.length; i++) {
-			char z = verschluesseln(messageCharArray[i]);
-			rueckgabeString += z;
-		}
+		try {
+			char[] messageCharArray = message.toCharArray();
+			for (int i = 0; i < messageCharArray.length; i++) {
+				char z = verschluesseln(messageCharArray[i]);
+				if (z > 90) {
+					z = (char) ((z - 90) + 64);
+				}
+				rueckgabeString += z;
+			}
 
-		return rueckgabeString;
+			return rueckgabeString;
+		} finally {
+			reset();
+		}
+	}
+
+	public String decrypt(String message) throws CrypterException {
+		try {
+			char[] messageCharArray = message.toCharArray();
+			for (int i = 0; i < messageCharArray.length; i++) {
+				char z = entschluesseln(messageCharArray[i]);
+				if (z < 65) {
+					z = (char) ((z + 90) - 64);
+				}
+				rueckgabeString += z;
+			}
+
+			return rueckgabeString;
+		} finally {
+			reset();
+		}
 	}
 
 	/**
@@ -32,7 +58,7 @@ public class CrypterCaesar implements Crypter {
 	 */
 	@Override
 	public char entschluesseln(char cypherTextZeichen) throws CrypterException {
-		return (char) (cypherTextZeichen - 'A' + 1);
+		return (char) (cypherTextZeichen - (keyCharArray[0] - 'A'));
 
 	}
 
@@ -54,12 +80,8 @@ public class CrypterCaesar implements Crypter {
 	// TODO Zahl von 1-26 oder 65<?
 	@Override
 	public char verschluesseln(char klartextZeichen) {
-		return (char) (klartextZeichen + 'A' - 1);
+		return (char) (klartextZeichen + (keyCharArray[0] - 'A'));
 	}
-	
-	
-	
-	
 
 	/**
 	 * @author Patrick Hentschel, 1524045
