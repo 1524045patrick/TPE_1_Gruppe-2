@@ -2,39 +2,22 @@ package CrypterPackage;
 
 public class CrypterCaesar implements Crypter {
 
-	/**
-	 * Konstruktor der Klasse
-	 * @param key 
-	 */
-	CrypterCaesar(String key) {
-		super();
+	String rueckgabeString = "";
+	char[] keyCharArray = new char[1];
+
+	CrypterCaesar(String uebergabeKey) {
+		Key keyCEA = new Key(uebergabeKey);
+		keyCharArray = keyCEA.key.toCharArray();
 	}
 
-	@Override
-	public char entschluesseln(char cypherTextZeichen) throws CrypterException {
-		// TODO entschlueseln fuer was?
-		return 0;
-	}
+	public String encrypt(String message) throws CrypterException {
+		char[] messageCharArray = message.toCharArray();
+		for (int i = 0; i < messageCharArray.length; i++) {
+			char z = verschluesseln(messageCharArray[i]);
+			rueckgabeString += z;
+		}
 
-	@Override
-	public void reset() {
-		// TODO reset?
-
-	}
-
-	/**
-	 * Methode, um eine Zahl dem entsprechenden Buchstaben zuzuordnen
-	 *
-	 * @param zahlZuBuchstabe
-	 *            Zahl, die als Buchstabe ausgedrückt werden soll
-	 * 
-	 * @return Gibt zahlZuBuchstabe + 'A', also 65 -1 aus, gecatest zum char. So
-	 *         erhält man bspw. für die Zahl 1 --> A
-	 */
-	// TODO Zahl von 1-26 oder 65<?
-	@Override
-	public char verschluesseln(char klartextZeichen) {
-		return (char) (klartextZeichen + 'A' - 1);
+		return rueckgabeString;
 	}
 
 	/**
@@ -43,14 +26,40 @@ public class CrypterCaesar implements Crypter {
 	 * @author Patrick Hentschel, 1524045
 	 * @param cypherTextZeichen
 	 *            Char, der umgewandelt werden soll
-	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zurück. So erhält
-	 *         man bspw. für den Buchstaben A --> 1, dies dient zur
+	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zurï¿½ck. So erhï¿½lt
+	 *         man bspw. fï¿½r den Buchstaben A --> 1, dies dient zur
 	 *         Vereinfachung beim rechnen
 	 */
+	@Override
+	public char entschluesseln(char cypherTextZeichen) throws CrypterException {
+		return (char) (cypherTextZeichen - 'A' + 1);
 
-	public int decode(char cypherTextZeichen) {
-		return  cypherTextZeichen - 'A' + 1;
 	}
+
+	@Override
+	public void reset() {
+		rueckgabeString = "";
+
+	}
+
+	/**
+	 * Methode, um eine Zahl dem entsprechenden Buchstaben zuzuordnen
+	 *
+	 * @param zahlZuBuchstabe
+	 *            Zahl, die als Buchstabe ausgedrï¿½ckt werden soll
+	 * 
+	 * @return Gibt zahlZuBuchstabe + 'A', also 65 -1 aus, gecatest zum char. So
+	 *         erhï¿½lt man bspw. fï¿½r die Zahl 1 --> A
+	 */
+	// TODO Zahl von 1-26 oder 65<?
+	@Override
+	public char verschluesseln(char klartextZeichen) {
+		return (char) (klartextZeichen + 'A' - 1);
+	}
+	
+	
+	
+	
 
 	/**
 	 * @author Patrick Hentschel, 1524045
@@ -64,10 +73,10 @@ public class CrypterCaesar implements Crypter {
 	private void checkMessage(String message) throws CrypterException {
 		if (message != null) {
 			if (message.matches("[A-Z]+") == false) {
-				throw new CrypterException("Kein gültiger Schlüssel! Schlüssel darf nur Großbuchstaben enthalten!");
+				throw new CrypterException("Kein gï¿½ltiger Schlï¿½ssel! Schlï¿½ssel darf nur Groï¿½buchstaben enthalten!");
 			}
 		} else
-			throw new CrypterException("Keine gültige Nachricht! Nachricht darf nicht null sein!");
+			throw new CrypterException("Keine gï¿½ltige Nachricht! Nachricht darf nicht null sein!");
 
 	}
 
@@ -86,17 +95,18 @@ public class CrypterCaesar implements Crypter {
 
 			if (key.matches("[A-Z]{1}") == false) {
 				throw new CrypterException(
-						"Kein gültiger Schlüssel! Schlüssel darf nur einen Großbuchstaben enthalten!");
+						"Kein gï¿½ltiger Schlï¿½ssel! Schlï¿½ssel darf nur einen Groï¿½buchstaben enthalten!");
 			}
 		} else {
-			throw new CrypterException("Kein gültiger Schlüssel! Schlüssel darf nicht null sein!");
+			throw new CrypterException("Kein gï¿½ltiger Schlï¿½ssel! Schlï¿½ssel darf nicht null sein!");
 		}
 	}
 
 	/**
-	 * Methode, um einen Text entsprechend des Caesar-Schiffre verschlüsselt
+	 * Methode, um einen Text entsprechend des Caesar-Schiffre verschlï¿½sselt
+	 * 
 	 * @author Patrick Hentschel, 1524045
-	 * @return Gibt die verschlüsselte Nachricht in einem String aus
+	 * @return Gibt die verschlï¿½sselte Nachricht in einem String aus
 	 */
 	public String verschluesselung(String key, String message) throws CrypterException {
 		checkKey(key);
