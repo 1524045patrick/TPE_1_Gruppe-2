@@ -7,6 +7,7 @@ public class Main {
 
 		System.out.println(caesar.encrypt("ABCDEFGHIJ"));
 		System.out.println(caesar.decrypt("ZABCDEFGHI"));
+		
 
 	}
 

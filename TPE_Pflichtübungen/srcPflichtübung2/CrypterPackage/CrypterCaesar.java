@@ -14,11 +14,12 @@ public class CrypterCaesar implements Crypter {
 
 	public String encrypt(String message) throws CrypterException {
 		try {
-			char[] messageCharArray = message.toCharArray();
+			checkMessage(message);
+			char[] messageCharArray = message.toUpperCase().toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = verschluesseln(messageCharArray[i]);
 				if (z > 90) {
-					z = (char) ((z - 90) + 64);
+					z = (char) (z - 26);
 				}
 				rueckgabeString += z;
 			}
@@ -35,7 +36,7 @@ public class CrypterCaesar implements Crypter {
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = entschluesseln(messageCharArray[i]);
 				if (z < 65) {
-					z = (char) ((z + 90) - 64);
+					z = (char) (z + 26);
 				}
 				rueckgabeString += z;
 			}
@@ -94,8 +95,9 @@ public class CrypterCaesar implements Crypter {
 	 */
 	private void checkMessage(String message) throws CrypterException {
 		if (message != null) {
+			message = message.toUpperCase();
 			if (message.matches("[A-Z]+") == false) {
-				throw new CrypterException("Kein g�ltiger Schl�ssel! Schl�ssel darf nur Gro�buchstaben enthalten!");
+				throw new CrypterException("Kein g�ltiger Schl�ssel!");
 			}
 		} else
 			throw new CrypterException("Keine g�ltige Nachricht! Nachricht darf nicht null sein!");
@@ -122,33 +124,6 @@ public class CrypterCaesar implements Crypter {
 		} else {
 			throw new CrypterException("Kein g�ltiger Schl�ssel! Schl�ssel darf nicht null sein!");
 		}
-	}
-
-	/**
-	 * Methode, um einen Text entsprechend des Caesar-Schiffre verschl�sselt
-	 * 
-	 * @author Patrick Hentschel, 1524045
-	 * @return Gibt die verschl�sselte Nachricht in einem String aus
-	 */
-	public String verschluesselung(String key, String message) throws CrypterException {
-		checkKey(key);
-		checkMessage(message);
-
-		int verschiebung = decode(key.charAt(0));
-		char[] messageArray = message.toCharArray();
-		char[] verschluesseltesArray = new char[message.length()];
-
-		char verschluesselteZahl;
-
-		for (int i = 0; i < messageArray.length; i++) {
-
-			verschluesselteZahl = (char) (messageArray[i] + verschiebung);
-			if (verschluesselteZahl > 'Z') {
-				verschluesselteZahl -= 26;
-			}
-			verschluesseltesArray[i] = verschluesselteZahl;
-		}
-		return new String(verschluesseltesArray);
 	}
 
 }
