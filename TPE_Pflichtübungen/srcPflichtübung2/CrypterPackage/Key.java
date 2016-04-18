@@ -19,12 +19,12 @@ public class Key {
 	public Key(String a) throws CrypterException {
 		key = a.toUpperCase();
 		if (key != "") {
-			if (key.matches("[A-Z]+") == false) {
-				throw new CrypterException("Kein g�ltiger Schl�ssel!");
+			if (key.matches("[A-Z]{1}") == false) {
+				throw new CrypterException("Kein gueltiger Schluessel! Schluessel darf nur aus einem Buchstabe und keiner Zahl bestehen.");
 			}
 
 		} else {
-			throw new CrypterException("Kein g�ltiger Schl�ssel! Schl�ssel darf nicht null sein!");
+			throw new CrypterException("Kein gueltiger Schluessel! Schluessel darf nicht null sein!");
 		}
 	}
 	

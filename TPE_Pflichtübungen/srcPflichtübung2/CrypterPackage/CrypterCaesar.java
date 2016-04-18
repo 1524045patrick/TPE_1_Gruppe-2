@@ -65,7 +65,7 @@ public class CrypterCaesar implements Crypter {
 	public String decrypt(String message) throws CrypterException {
 		try {
 			checkMessage(message);
-			char[] messageCharArray = message.toCharArray();
+			char[] messageCharArray = message.toUpperCase().toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = entschluesseln(messageCharArray[i]);
 				if (z < 65) {
@@ -83,11 +83,11 @@ public class CrypterCaesar implements Crypter {
 	/**
 	 * Methode die einen char in seinen entsprechenden int-Wert umwandelt
 	 * 
-	 * @author Patrick Hentschel, Dennis Szczerbinski
+	 * @author Patrick Hentschel
 	 * @param cypherTextZeichen
 	 *            Char, der umgewandelt werden soll
-	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zur�ck. So erh�lt
-	 *         man bspw. f�r den Buchstaben A --> 1, dies dient zur
+	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zurueck. So erhaelt
+	 *         man bspw. fuer den Buchstaben A --> 1, dies dient zur
 	 *         Vereinfachung beim rechnen
 	 */
 	@Override
@@ -112,12 +112,12 @@ public class CrypterCaesar implements Crypter {
 	 * Methode, um eine Zahl dem entsprechenden Buchstaben zuzuordnen
 	 *
 	 * @param zahlZuBuchstabe
-	 *            Zahl, die als Buchstabe ausgedr�ckt werden soll
+	 *            Zahl, die als Buchstabe ausgedrueckt werden soll
 	 * 
 	 * @return Gibt zahlZuBuchstabe + 'A', also 65 -1 aus, gecatest zum char. So
-	 *         erh�lt man bspw. f�r die Zahl 1 --> A
+	 *         erhaelt man bspw. fuer die Zahl 1 --> A
 	 */
-	// TODO Zahl von 1-26 oder 65<?
+
 	@Override
 	public char verschluesseln(char klartextZeichen) {
 		return (char) (klartextZeichen + (keyCharArray[0] - 'A' + 1));
@@ -136,10 +136,10 @@ public class CrypterCaesar implements Crypter {
 		if (message != null) {
 			message = message.toUpperCase();
 			if (message.matches("[A-Z]+") == false) {
-				throw new CrypterException("Kein g�ltiger Schl�ssel!");
+				throw new CrypterException("Keine gueltige Nachricht!");
 			}
 		} else
-			throw new CrypterException("Keine g�ltige Nachricht! Nachricht darf nicht null sein!");
+			throw new CrypterException("Keine gueltige Nachricht! Nachricht darf nicht null sein!");
 	}
 
 }
