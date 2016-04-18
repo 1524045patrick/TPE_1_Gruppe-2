@@ -18,6 +18,9 @@ public class CrypterCaesar implements Crypter {
 	CrypterCaesar(String uebergabeKey) throws CrypterException {
 		Key keyCEA = new Key(uebergabeKey);
 		keyCharArray = keyCEA.key.toCharArray();
+		if(keyCharArray.length>1){
+			throw new CrypterException("Der Schluessel darf nur ein Zeichen enthalten !");
+		}
 	}
 
 	/**

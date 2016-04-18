@@ -20,16 +20,13 @@ public class Key {
 		key = a.toUpperCase();
 		if (key != "") {
 			if (key.matches("[A-Z]{1}") == false) {
-				throw new CrypterException("Kein gueltiger Schluessel! Schluessel darf nur aus einem Buchstabe und keiner Zahl bestehen.");
+				throw new CrypterException(
+						"Kein gueltiger Schluessel! Schluessel darf nur aus einem Buchstabe und keiner Zahl bestehen.");
 			}
 
 		} else {
 			throw new CrypterException("Kein gueltiger Schluessel! Schluessel darf nicht null sein!");
 		}
-	}
-	
-	public String toString(){
-		return key;
 	}
 
 }
