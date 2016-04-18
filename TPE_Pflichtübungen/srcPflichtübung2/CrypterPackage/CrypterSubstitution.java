@@ -8,8 +8,8 @@ public class CrypterSubstitution implements Crypter {
 	char[] messageCharArray;
 
 	String rueckgabeString = "";
-	
-	static final int ALPHABETLEANGE=26;
+
+	final int ALPHABETLEANGE = 26;
 
 	CrypterSubstitution(String uebergabeKey) {
 		Key keySub = new Key(uebergabeKey);
@@ -24,21 +24,15 @@ public class CrypterSubstitution implements Crypter {
 	 */
 	public String encrypt(String message) throws CrypterException {
 		try {
-			messageCharArray = message.toCharArray(); // Umwandlung der messag
-														// in ein Char-Array
-			for (int i = 0; i < messageCharArray.length; i++) { // Jeder
-																// einzelne Char
-																// wird der
-																// Methode
-				char z = verschluesseln(messageCharArray[i]); // uebergeben und
-																// der
-																// Rueckgabewert
-																// auf
-				rueckgabeString += z; // den leeren String geschrieben.
+			checkMessage(message);
+			messageCharArray = message.toCharArray();
+			for (int i = 0; i < messageCharArray.length; i++) {
+				char z = verschluesseln(messageCharArray[i]);
+				rueckgabeString += z;
 			}
 			return rueckgabeString;
-		} finally { // Nach Beendigung der verschluesselung
-			reset(); // wird der rueckgabeString resetet.
+		} finally {
+			reset();
 		}
 	}
 
@@ -50,6 +44,7 @@ public class CrypterSubstitution implements Crypter {
 	 */
 	public String decrypt(String message) throws CrypterException {
 		try {
+			checkMessage(message);
 			messageCharArray = message.toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = entschluesseln(messageCharArray[i]);
@@ -108,6 +103,26 @@ public class CrypterSubstitution implements Crypter {
 		}
 
 		return ' ';
+	}
+
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @param message
+	 *            uebergibt die message die verschluesselt werden soll und
+	 *            prueft diese auf die Kriterien
+	 * @throws CrypterException
+	 *             Diese Exception wird geworfen, sollte die message nicht den
+	 *             Kriterien entsprechen auf die geprueft wird
+	 */
+	private void checkMessage(String message) throws CrypterException {
+		if (message != null) {
+			message = message.toUpperCase();
+			if (message.matches("[A-Z]+") == false) {
+				throw new CrypterException("Kein g�ltiger Schl�ssel!");
+			}
+		} else
+			throw new CrypterException("Keine g�ltige Nachricht! Nachricht darf nicht null sein!");
+
 	}
 
 }

@@ -1,6 +1,11 @@
 package CrypterPackage;
 
 public class CrypterXOR implements Crypter {
+	
+	char[] alphabetPlus = {};
+	
+	final int EINS=1;
+	
 
 	@Override
 	public void reset() {
