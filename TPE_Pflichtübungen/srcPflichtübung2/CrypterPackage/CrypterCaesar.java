@@ -16,8 +16,6 @@ public class CrypterCaesar implements Crypter {
 	 * @throws CrypterException
 	 */
 	CrypterCaesar(String uebergabeKey) throws CrypterException {
-		uebergabeKey = uebergabeKey.toUpperCase();
-		checkKey(uebergabeKey);
 		Key keyCEA = new Key(uebergabeKey);
 		keyCharArray = keyCEA.key.toCharArray();
 	}
@@ -94,7 +92,7 @@ public class CrypterCaesar implements Crypter {
 	 */
 	@Override
 	public char entschluesseln(char cypherTextZeichen) throws CrypterException {
-		return (char) (cypherTextZeichen - (keyCharArray[0] - 'A'));
+		return (char) (cypherTextZeichen - (keyCharArray[0] - 'A' + 1));
 
 	}
 
@@ -122,7 +120,7 @@ public class CrypterCaesar implements Crypter {
 	// TODO Zahl von 1-26 oder 65<?
 	@Override
 	public char verschluesseln(char klartextZeichen) {
-		return (char) (klartextZeichen + (keyCharArray[0] - 'A'));
+		return (char) (klartextZeichen + (keyCharArray[0] - 'A' + 1));
 	}
 
 	/**
@@ -142,28 +140,6 @@ public class CrypterCaesar implements Crypter {
 			}
 		} else
 			throw new CrypterException("Keine g�ltige Nachricht! Nachricht darf nicht null sein!");
-
-	}
-
-	/**
-	 * @author Patrick Hentschel, 1524045
-	 * @param key
-	 *            uebergibt den key der zur Verschluesselung dient und prueft
-	 *            diesen auf seine Gueltigkeit
-	 * @throws CrypterException
-	 *             wirft diese Exception sollte der key nicht gueltig sein, mit
-	 *             einer Fehlerbeschreibung
-	 */
-	private void checkKey(String key) throws CrypterException {
-
-		if (key != null) {
-
-			if (key.matches("[A-Z]{1}") == false) {
-				throw new CrypterException("Kein g�ltiger Schl�ssel!");
-			}
-		} else {
-			throw new CrypterException("Kein g�ltiger Schl�ssel! Schl�ssel darf nicht null sein!");
-		}
 	}
 
 }

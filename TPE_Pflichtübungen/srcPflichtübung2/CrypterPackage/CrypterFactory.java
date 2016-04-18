@@ -2,11 +2,11 @@ package CrypterPackage;
 
 public class CrypterFactory {
 
-	public static CrypterSubstitution creatSUB(String key) {
+	public static CrypterSubstitution creatSUB(String key) throws CrypterException {
 		return new CrypterSubstitution(key);
 	}
 
-	public static CrypterXOR creatXOR() {
+	public static CrypterXOR creatXOR() throws CrypterException{
 		return new CrypterXOR();
 	}
 

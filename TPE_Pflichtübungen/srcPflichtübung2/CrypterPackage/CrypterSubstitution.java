@@ -11,9 +11,17 @@ public class CrypterSubstitution implements Crypter {
 
 	final int ALPHABETLEANGE = 26;
 
-	CrypterSubstitution(String uebergabeKey) {
-		Key keySub = new Key(uebergabeKey);
-		keyCharArray = keySub.key.toUpperCase().toCharArray();
+	
+	//TODO Abfrage klappt nicht richtig ob nur jeder Buchstaben einmal vorhanden ist.
+	CrypterSubstitution(String uebergabeKey) throws CrypterException {
+		if (uebergabeKey.matches("[A-Z]{1}")==true) {
+			Key keySub = new Key(uebergabeKey);
+			keyCharArray = keySub.key.toCharArray();
+
+		} else {
+
+			throw new CrypterException("Blablabal");
+		}
 	}
 
 	/**
