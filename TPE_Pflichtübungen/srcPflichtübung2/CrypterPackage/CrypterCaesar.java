@@ -5,6 +5,16 @@ public class CrypterCaesar implements Crypter {
 	String rueckgabeString = "";
 	char[] keyCharArray = new char[1];
 
+	/**
+	 * Konstruktor, der zunaechst den Key in ein Großbuchstaben umwandelt. Mit
+	 * checkKey() wird auf die Gueltigkeit geprueft, da er nur ein Zeichen
+	 * enthalten darf.
+	 * 
+	 * @author Dennis Szczerbinski
+	 * @param uebergabeKey
+	 *            Key zur Verschluesselung
+	 * @throws CrypterException
+	 */
 	CrypterCaesar(String uebergabeKey) throws CrypterException {
 		uebergabeKey = uebergabeKey.toUpperCase();
 		checkKey(uebergabeKey);
@@ -12,6 +22,16 @@ public class CrypterCaesar implements Crypter {
 		keyCharArray = keyCEA.key.toCharArray();
 	}
 
+	/**
+	 * Hier wird die Nachricht zunaechst auf die Gueltigkeit geprueft und
+	 * anschließend in ein Array umgewandelt, damit man jeden einzelnen
+	 * Buchstaben in die Methode verschluesseln uebergeben kann.
+	 * 
+	 * @param message
+	 *            Nachricht die Verschluesselt werden muss
+	 * @return rueckgabeString Verschluesselter Satz
+	 * @throws CrypterException
+	 */
 	public String encrypt(String message) throws CrypterException {
 		try {
 			checkMessage(message);
@@ -26,12 +46,27 @@ public class CrypterCaesar implements Crypter {
 
 			return rueckgabeString;
 		} finally {
+			/**
+			 * Resetet den String wieder, weil sonst beim erneuten verwenden des
+			 * Parameters der alte Wert mit ausgegeben wird.
+			 */
 			reset();
 		}
 	}
 
+	/**
+	 * Entschluesselung der Nachricht. Funktioniert genau wie beim
+	 * Verschluesseln, nur mit der verschluesselten Nachricht.
+	 * 
+	 * @author Dennis Szczerbinski
+	 * @param message
+	 *            Zu entschluesselnde Nachricht
+	 * @return rueckgabeString Entschluesselter Satz
+	 * @throws CrypterException
+	 */
 	public String decrypt(String message) throws CrypterException {
 		try {
+			checkMessage(message);
 			char[] messageCharArray = message.toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = entschluesseln(messageCharArray[i]);
@@ -50,7 +85,7 @@ public class CrypterCaesar implements Crypter {
 	/**
 	 * Methode die einen char in seinen entsprechenden int-Wert umwandelt
 	 * 
-	 * @author Patrick Hentschel, 1524045
+	 * @author Patrick Hentschel, Dennis Szczerbinski
 	 * @param cypherTextZeichen
 	 *            Char, der umgewandelt werden soll
 	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zur�ck. So erh�lt
@@ -63,6 +98,12 @@ public class CrypterCaesar implements Crypter {
 
 	}
 
+	/**
+	 * Hier wird der Rueckgabe String wieder geleert. Dies ist notig da sonst
+	 * bei mehrmaliger benutzung der Ver-/Entschluesseln Methode die voherige
+	 * Nachricht bebehaelt.
+	 * 
+	 */
 	@Override
 	public void reset() {
 		rueckgabeString = "";
@@ -118,8 +159,7 @@ public class CrypterCaesar implements Crypter {
 		if (key != null) {
 
 			if (key.matches("[A-Z]{1}") == false) {
-				throw new CrypterException(
-						"Kein g�ltiger Schl�ssel! Schl�ssel darf nur einen Gro�buchstaben enthalten!");
+				throw new CrypterException("Kein g�ltiger Schl�ssel!");
 			}
 		} else {
 			throw new CrypterException("Kein g�ltiger Schl�ssel! Schl�ssel darf nicht null sein!");
