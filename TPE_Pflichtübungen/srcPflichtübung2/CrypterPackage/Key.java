@@ -17,9 +17,10 @@ public class Key {
 	 * @throws CrypterException
 	 */
 	public Key(String a) throws CrypterException {
+
 		key = a.toUpperCase();
 		if (key != "") {
-			if (key.matches("[A-Z]{1}") == false) {
+			if (key.matches("[A-Z]+") == false) {
 				throw new CrypterException(
 						"Kein gueltiger Schluessel! Schluessel darf nur aus einem Buchstabe und keiner Zahl bestehen.");
 			}
@@ -27,6 +28,7 @@ public class Key {
 		} else {
 			throw new CrypterException("Kein gueltiger Schluessel! Schluessel darf nicht null sein!");
 		}
+
 	}
 
 }

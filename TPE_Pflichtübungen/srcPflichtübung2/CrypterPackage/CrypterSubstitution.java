@@ -11,21 +11,24 @@ public class CrypterSubstitution implements Crypter {
 
 	final int ALPHABETLEANGE = 26;
 
-	
-	//TODO Abfrage klappt nicht richtig ob nur jeder Buchstaben einmal vorhanden ist.
+	// TODO Abfrage klappt nicht richtig ob nur jeder Buchstaben einmal
+	// vorhanden ist.
 	CrypterSubstitution(String uebergabeKey) throws CrypterException {
-		if (uebergabeKey.matches("[A-Z]{1}")==true) {
+		checkNoSameLetters(uebergabeKey);
+		if (uebergabeKey.matches("[A-Z]{26,26}") == true) {
 			Key keySub = new Key(uebergabeKey);
-			keyCharArray = keySub.key.toCharArray();
+			keyCharArray = keySub.key.toUpperCase().toCharArray();
 
+		} else if (uebergabeKey.length() <= 26 || uebergabeKey.length() >= 26) {
+			throw new CrypterException("Der Key darf nur genau 26 Buchstaben enthalten.");
 		} else {
 
-			throw new CrypterException("Blablabal");
+			throw new CrypterException("Nur Groﬂbuchstaben sind erlaubt, sowie keine Zahlen");
 		}
 	}
 
 	/**
-	 * @author Dennis Szczerbinski
+	 * @author Dennis Szczerbinski, Patrick Hentschel
 	 * @param message
 	 *            Ist die zu verschluesselnde Nachricht.
 	 * @return Gibt die verschluesselte Nachricht zurueck.
@@ -33,7 +36,7 @@ public class CrypterSubstitution implements Crypter {
 	public String encrypt(String message) throws CrypterException {
 		try {
 			checkMessage(message);
-			messageCharArray = message.toCharArray();
+			messageCharArray = message.toUpperCase().toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = verschluesseln(messageCharArray[i]);
 				rueckgabeString += z;
@@ -53,7 +56,7 @@ public class CrypterSubstitution implements Crypter {
 	public String decrypt(String message) throws CrypterException {
 		try {
 			checkMessage(message);
-			messageCharArray = message.toCharArray();
+			messageCharArray = message.toUpperCase().toCharArray();
 			for (int i = 0; i < messageCharArray.length; i++) {
 				char z = entschluesseln(messageCharArray[i]);
 				rueckgabeString += z;
@@ -125,12 +128,30 @@ public class CrypterSubstitution implements Crypter {
 	private void checkMessage(String message) throws CrypterException {
 		if (message != null) {
 			message = message.toUpperCase();
-			if (message.matches("[A-Z]+") == false) {
-				throw new CrypterException("Kein gÔøΩltiger SchlÔøΩssel!");
+			if(message == null){
+				throw new CrypterException("Der Schluessel darf nicht Null sein!");
 			}
-		} else
-			throw new CrypterException("Keine gÔøΩltige Nachricht! Nachricht darf nicht null sein!");
-
+			if (message.matches("[A-Z]+") == false) {
+				throw new CrypterException("Der Schluessel ist ungueltig. Nur Buchstaben sind erlaubt.");
+			}
+		}
 	}
 
+	private static void checkNoSameLetters(String key) throws CrypterException {
+		
+		int j = 0;
+		for (int i = 0; i < key.length(); i++) {
+			j++;
+			for (int g = j; g < key.length(); g++) {
+
+				if (key.charAt(i) == key.charAt(g)) {
+
+					throw new CrypterException("Der Key darf keine gleichen Buchstaben enthalten.");
+
+				}
+				
+			} 
+		}
+		
+	}
 }

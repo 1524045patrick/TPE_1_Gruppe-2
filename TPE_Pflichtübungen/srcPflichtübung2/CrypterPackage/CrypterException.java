@@ -2,7 +2,12 @@ package CrypterPackage;
 
 public class CrypterException extends Throwable{
 	
-    public CrypterException() {
+    /**
+     * @author Patrick Hentschel, 1524045
+     * verschiedene Konstruktoren fuer die jeweiligen Fehlermeldungen
+     */
+
+	public CrypterException() {
         super();
     }
 

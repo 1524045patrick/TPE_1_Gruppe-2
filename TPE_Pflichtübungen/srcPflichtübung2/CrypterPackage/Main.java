@@ -6,12 +6,16 @@ public class Main {
 		CrypterCaesar caesar = CrypterFactory.createCAE("A");
 
 		System.out.println(caesar.encrypt("ABCDEFGHIJ"));
-		System.out.println(caesar.decrypt("ZABCDEFGHI"));
+		System.out.println(caesar.decrypt("BCDEFGHIJK"));
 		System.out.println(caesar.entschluesseln('D'));
+
+		CrypterSubstitution sub = CrypterFactory.createSUB("AAADEFGHIJKLMNOPQRSTUVWXYZ");
+		System.out.println(sub.encrypt("TEST"));
 		
-		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-		System.out.println(sub.encrypt("Test"));
+		CrypterSubstitution sub2 = CrypterFactory.createSUB("MNBVCXYLKJHGFDSAPOIUZTREWQ");
+		System.out.println(sub2.encrypt(null));
 		
+	
 		
 	}
 
