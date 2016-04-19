@@ -11,6 +11,17 @@ public class CrypterSubstitution implements Crypter {
 
 	final int ALPHABETLEANGE = 26;
 
+	/**
+	 * 
+	 * @param uebergabeKey
+	 *            der Key der zur Verschluesselung ubergeben wird. Dieser wird
+	 *            auf die Kriterien geprueft 26 Zeichen lang und jeden
+	 *            Buchstaben nur einmal --> das ganze Alphabet in beliebiger
+	 *            Reihenfolge
+	 * @throws CrypterException
+	 *             diese Exception gibt eine Fehlerbeschreibung an, was beim Key
+	 *             nicht den Kriterien entsprach
+	 */
 	CrypterSubstitution(String uebergabeKey) throws CrypterException {
 		checkNoSameLetters(uebergabeKey);
 		if (uebergabeKey.matches("[A-Z]{26,26}") == true) {
@@ -28,7 +39,7 @@ public class CrypterSubstitution implements Crypter {
 	/**
 	 * @author Dennis Szczerbinski, Patrick Hentschel
 	 * @param message
-	 *            Ist die zu verschluesselnde Nachricht.
+	 *            verschluesselt die Nachricht anhand vom uebergebenen Key
 	 * @return Gibt die verschluesselte Nachricht zurueck.
 	 */
 	public String encrypt(String message) throws CrypterException {
@@ -134,6 +145,15 @@ public class CrypterSubstitution implements Crypter {
 		}
 	}
 
+	/**
+	 * @author Patrick Hentschel
+	 * @param key
+	 *            der uebergebene Key wird auf verschiedene Kriterien geprueft
+	 *            --> darf nicht null sein und keine Buchstaben duerfen doppelt
+	 *            vorkommen
+	 * @throws CrypterException
+	 *             wirft eine Fehlerbeschreibung bei unpassendem Key
+	 */
 	private static void checkNoSameLetters(String key) throws CrypterException {
 		if (key == null) {
 			throw new CrypterException("Leerer Key! Der Key darf nicht null sein.");

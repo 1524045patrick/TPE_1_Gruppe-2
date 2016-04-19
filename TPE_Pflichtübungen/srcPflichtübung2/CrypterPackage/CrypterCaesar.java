@@ -6,9 +6,9 @@ public class CrypterCaesar implements Crypter {
 	char[] keyCharArray = new char[1];
 
 	/**
-	 * Konstruktor, der zunaechst den Key in ein Großbuchstaben umwandelt. Mit
-	 * checkKey() wird auf die Gueltigkeit geprueft, da er nur ein Zeichen
-	 * enthalten darf.
+	 * Konstruktor, der zunaechst den Key in ein Grossbuchstaben umwandelt. Mit
+	 * der if-Abfrage wird geprueft ob der Key auch nur einen Buchstaben
+	 * enthaelt, wie fuer die Caesar-Verschluesselung notwendig
 	 * 
 	 * @author Dennis Szczerbinski
 	 * @param uebergabeKey
@@ -18,16 +18,17 @@ public class CrypterCaesar implements Crypter {
 	CrypterCaesar(String uebergabeKey) throws CrypterException {
 		Key keyCEA = new Key(uebergabeKey);
 		keyCharArray = keyCEA.key.toCharArray();
-		if(keyCharArray.length>1){
+		if (keyCharArray.length > 1) {
 			throw new CrypterException("Der Schluessel darf nur ein Zeichen enthalten !");
 		}
 	}
 
 	/**
 	 * Hier wird die Nachricht zunaechst auf die Gueltigkeit geprueft und
-	 * anschließend in ein Array umgewandelt, damit man jeden einzelnen
+	 * anschliessend in ein Array umgewandelt, damit man jeden einzelnen
 	 * Buchstaben in die Methode verschluesseln uebergeben kann.
 	 * 
+	 * @author Patrick Hentschel, Dennis Szczerbinski
 	 * @param message
 	 *            Nachricht die Verschluesselt werden muss
 	 * @return rueckgabeString Verschluesselter Satz
@@ -89,8 +90,8 @@ public class CrypterCaesar implements Crypter {
 	 * @author Patrick Hentschel
 	 * @param cypherTextZeichen
 	 *            Char, der umgewandelt werden soll
-	 * @return Gibt den umzuwandelnderChar - 'A' , also 65 + 1 zurueck. So erhaelt
-	 *         man bspw. fuer den Buchstaben A --> 1, dies dient zur
+	 * @return Gibt den umzuwandelnderChar - 'A' + 1, also 65 + 1 zurueck. So
+	 *         erhaelt man bspw. fuer den Buchstaben A --> 1, dies dient zur
 	 *         Vereinfachung beim rechnen
 	 */
 	@Override
@@ -114,10 +115,10 @@ public class CrypterCaesar implements Crypter {
 	/**
 	 * Methode, um eine Zahl dem entsprechenden Buchstaben zuzuordnen
 	 *
-	 * @param zahlZuBuchstabe
+	 * @param klartextZeichen
 	 *            Zahl, die als Buchstabe ausgedrueckt werden soll
 	 * 
-	 * @return Gibt zahlZuBuchstabe + 'A', also 65 -1 aus, gecatest zum char. So
+	 * @return Gibt klartextZeichen + 'A', also 65 -1 aus, gecatest zum char. So
 	 *         erhaelt man bspw. fuer die Zahl 1 --> A
 	 */
 
@@ -129,11 +130,12 @@ public class CrypterCaesar implements Crypter {
 	/**
 	 * @author Patrick Hentschel, 1524045
 	 * @param message
-	 *            uebergibt die message die verschluesselt werden soll und
-	 *            prueft diese auf die Kriterien
+	 *            uebergibt die message, die verschluesselt werden soll und
+	 *            prueft diese auf die Kriterien um die Verschluesselung
+	 *            erfolgreich anzuwenden
 	 * @throws CrypterException
 	 *             Diese Exception wird geworfen, sollte die message nicht den
-	 *             Kriterien entsprechen auf die geprueft wird
+	 *             Kriterien entsprechen auf die geprueft worden ist.
 	 */
 	private void checkMessage(String message) throws CrypterException {
 		if (message != null) {

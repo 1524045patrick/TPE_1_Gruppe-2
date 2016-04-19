@@ -4,7 +4,7 @@ public class Key {
 	String key;
 
 	/**
-	 * Konstrukter der Klasse Key. Der uebergebene Schluessel wird wird in
+	 * Konstrukter der Klasse Key. Der uebergebene Schluessel wird in
 	 * Großbuchstaben umgewandelt, da dies eine Vorgabe war. Ist der String
 	 * leer, wird kommt es zu einer Exception, da ohne Schluessel keine
 	 * Verschluesselung stattfindet. Mit der zweiten If-Abfrage wird geschaut ob
