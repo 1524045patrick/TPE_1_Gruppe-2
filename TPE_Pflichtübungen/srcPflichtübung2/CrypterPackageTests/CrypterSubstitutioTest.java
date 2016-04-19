@@ -20,19 +20,19 @@ public class CrypterSubstitutioTest {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.encrypt(""), is(""));
 	}
-	
+
 	@Test(expected = CrypterException.class)
 	public void encryptTestSpaces() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.encrypt("   "), is("  "));
 	}
-	
-	@Test(expected = CrypterException.class)	
+
+	@Test(expected = CrypterException.class)
 	public void encryptTestNull() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.encrypt(null), is(""));
 	}
-	
+
 	@Test
 	public void encryptTestLowerCaseLetters() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -56,29 +56,59 @@ public class CrypterSubstitutioTest {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.encrypt("HALLO"), is("HALLO"));
 	}
-	
-	//TEST FUER UNGUELTIGE NACHRICHTEN DECRYPT
-	
+
+	// TEST FUER UNGUELTIGE NACHRICHTEN DECRYPT
+
 	@Test
-	public void decryptTestAllOkay() throws CrypterException{
+	public void decryptTestAllOkay() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.decrypt("test"), is("TEST"));
 	}
-	
+
 	@Test(expected = CrypterException.class)
 	public void decryptTestNumbers() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-		assertThat(sub.decrypt("Tes7"), is("Tes7"));
+		assertThat(sub.decrypt("TES7"), is("TES7"));
 	}
-	
-	@Test
+
+	@Test(expected = CrypterException.class)
 	public void decryptTestEmptyMessage() throws CrypterException {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 		assertThat(sub.decrypt(""), is(""));
 	}
 
-	// TEST FUER UNGUELTIGE KEYS
+	@Test(expected = CrypterException.class)
+	public void decryptTestNullMessage() throws CrypterException {
+		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		assertThat(sub.decrypt(null), is(""));
+	}
+
+	@Test(expected = CrypterException.class)
+	public void decryptTestSpaces() throws CrypterException {
+		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		assertThat(sub.decrypt("  "), is(" "));
+	}
+
+	@Test
+	public void decryptTestLowerCaseLettersOnly() throws CrypterException {
+		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		assertThat(sub.decrypt("test"), is("TEST"));
+	}
+
+	@Test
+	public void decryptTestLowerAndUpperCases() throws CrypterException {
+		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		assertThat(sub.decrypt("TeSt"), is("TEST"));
+	}
 	
+	@Test(expected = CrypterException.class)
+	public void decryptTestSpecialSign() throws CrypterException {
+		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		assertThat(sub.decrypt("T@st"), is("T@st"));
+	}
+
+	// TEST FUER UNGUELTIGE KEYS
+
 	@Test(expected = CrypterException.class)
 	public void keyNotEnoughLetters() throws CrypterException {
 		@SuppressWarnings("unused")
@@ -103,20 +133,19 @@ public class CrypterSubstitutioTest {
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXYÖÜÄZ");
 	}
 
-
 	@Test(expected = CrypterException.class)
 	public void keySameLetters() throws CrypterException {
 		@SuppressWarnings("unused")
 		CrypterSubstitution sub = CrypterFactory.createSUB("ABCDEFGHIJKLMNOPQRSTUVWXAA");
 	}
-	
+
 	@Test(expected = CrypterException.class)
 	public void keyEmptyKey() throws CrypterException {
 		@SuppressWarnings("unused")
 		CrypterSubstitution sub = CrypterFactory.createSUB("");
 	}
-	
-	@Test(expected = NullPointerException.class)
+
+	@Test(expected = CrypterException.class)
 	public void keyNull() throws CrypterException {
 		@SuppressWarnings("unused")
 		CrypterSubstitution sub = CrypterFactory.createSUB(null);

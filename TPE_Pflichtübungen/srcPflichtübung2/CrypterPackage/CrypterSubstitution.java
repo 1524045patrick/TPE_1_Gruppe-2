@@ -11,8 +11,6 @@ public class CrypterSubstitution implements Crypter {
 
 	final int ALPHABETLEANGE = 26;
 
-	// TODO Abfrage klappt nicht richtig ob nur jeder Buchstaben einmal
-	// vorhanden ist.
 	CrypterSubstitution(String uebergabeKey) throws CrypterException {
 		checkNoSameLetters(uebergabeKey);
 		if (uebergabeKey.matches("[A-Z]{26,26}") == true) {
@@ -126,19 +124,20 @@ public class CrypterSubstitution implements Crypter {
 	 *             Kriterien entsprechen auf die geprueft wird
 	 */
 	private void checkMessage(String message) throws CrypterException {
-		if (message != null) {
+		if (message == null) {
+			throw new CrypterException("Der Schluessel darf nicht Null sein!");
+		} else {
 			message = message.toUpperCase();
-			if(message == null){
-				throw new CrypterException("Der Schluessel darf nicht Null sein!");
-			}
-			if (message.matches("[A-Z]+") == false) {
-				throw new CrypterException("Der Schluessel ist ungueltig. Nur Buchstaben sind erlaubt.");
-			}
+		}
+		if (message.matches("[A-Z]+") == false) {
+			throw new CrypterException("Der Schluessel ist ungueltig. Nur Buchstaben sind erlaubt.");
 		}
 	}
 
 	private static void checkNoSameLetters(String key) throws CrypterException {
-		
+		if (key == null) {
+			throw new CrypterException("Leerer Key! Der Key darf nicht null sein.");
+		}
 		int j = 0;
 		for (int i = 0; i < key.length(); i++) {
 			j++;
@@ -149,9 +148,9 @@ public class CrypterSubstitution implements Crypter {
 					throw new CrypterException("Der Key darf keine gleichen Buchstaben enthalten.");
 
 				}
-				
-			} 
+
+			}
 		}
-		
+
 	}
 }
