@@ -17,6 +17,30 @@ public class Member {
 	
 	
 	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @param vorname1
+	 *            uebergibt den Vornamen des Mitgliedes
+	 * @param nachname2
+	 *            uebergibt den Nachnamen des Mitgliedes
+	 * @param anzahlMitgliedsjahre
+	 *            uebergibt die Jahre, die das Mitglied schon im Club Mitglied
+	 *            ist
+	 */
+	
+	public Member(String vorname1, String nachname1, int anzahlMitgliedsjahre) {
+		this.nachname = nachname1;
+		this.vorname = vorname1;
+		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
+		mitgliederId = NEXTIDENT;
+		++NEXTIDENT;
+
+	}
+
+	
+	public long getMitgliederId(){
+		return this.mitgliederId;
+	}
+	/**
 	 * @return gibt den Nachnamen aus
 	 */
 	public String getNachname() {
@@ -65,45 +89,6 @@ public class Member {
 		this.anzahlDerMitgliedsjahre = anzahlDerMitgliedsjahre;
 	}
 
-	
-	/**
-	 * @author Patrick Hentschel, 1524045
-	 * @param vorname1
-	 *            uebergibt den Vornamen des Mitgliedes
-	 * @param nachname2
-	 *            uebergibt den Nachnamen des Mitgliedes
-	 * @param anzahlMitgliedsjahre
-	 *            uebergibt die Jahre, die das Mitglied schon im Club Mitglied
-	 *            ist
-	 */
-	
-	public Member(String vorname1, String nachname1, int anzahlMitgliedsjahre) {
-		this.nachname = nachname1;
-		this.vorname = vorname1;
-		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
-		mitgliederId = NEXTIDENT;
-		++NEXTIDENT;
-
-	}
-
-
-	
-
-	@Override
-	public String toString() {
-		return "Mitglied: " + nachname + ", " + vorname + " Mitglied seit: " + anzahlDerMitgliedsjahre + " Jahren"
-				+ " --MitgliedsID: " + mitgliederId;
-
-	}
-
-	public String compareTo(Member a, Member b) {
-		if (a.equals(b)) {
-			return a.toString() + " es handelt sich um das selbe Mitglied";
-		} else {
-			return a.toString() + " \n" + b.toString() + "\n-->Es handelt sich um verschiedene Mitglieder.";
-		}
-
-	}
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
@@ -123,6 +108,24 @@ public class Member {
 	@Override
 	public int hashCode() {
 		return super.hashCode();
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Mitglied: " + nachname + ", " + vorname + " Mitglied seit: " + anzahlDerMitgliedsjahre + " Jahren"
+				+ " --MitgliedsID: " + mitgliederId;
+
+	}
+
+	public String compareTo(Member a, Member b) {
+		if (a.equals(b)) {
+			return a.toString() + " es handelt sich um das selbe Mitglied";
+		} else {
+			return a.toString() + " \n" + b.toString() + "\n-->Es handelt sich um verschiedene Mitglieder.";
+		}
+
 	}
 
 }

@@ -1,13 +1,9 @@
 package mitgliederVerwaltung;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @SuppressWarnings("serial")
-public class MembershipList extends HashMap<Object, Object> {
-
+public class MembershipList<K, V> implements Map {
 
 	@Override
 	public void clear() {
@@ -16,19 +12,19 @@ public class MembershipList extends HashMap<Object, Object> {
 	}
 
 	@Override
-	public boolean containsKey(Object key) {
+	public boolean containsKey(Object arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean containsValue(Object value) {
+	public boolean containsValue(Object arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<Object, Object>> entrySet() {
+	public Set entrySet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,7 +42,7 @@ public class MembershipList extends HashMap<Object, Object> {
 	}
 
 	@Override
-	public Set<Object> keySet() {
+	public Set keySet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,11 +53,11 @@ public class MembershipList extends HashMap<Object, Object> {
 		return null;
 	}
 
-	//TODO WAS IST DAS?
-	//public void putAll(Map<? extends Object, ? extends Object> m) {
+	@Override
+	public void putAll(Map m) {
+		// TODO Auto-generated method stub
 		
-		
-	//}
+	}
 
 	@Override
 	public Object remove(Object key) {
@@ -76,11 +72,10 @@ public class MembershipList extends HashMap<Object, Object> {
 	}
 
 	@Override
-	public Collection<Object> values() {
+	public Collection values() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	//put-Methode(Member)
 	
 }
