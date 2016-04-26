@@ -1,21 +1,19 @@
 package mitgliederVerwaltung;
 
 public class Member {
-	
+
 	/**
 	 * @author Patrick Hentschel, 1524045
 	 * @param NEXTIDENT
 	 *            wird die fortlaufende MitgliedsID
 	 */
-	
-	private static long NEXTIDENT = 1;
-	private long mitgliederId;
+
+	private static Integer NEXTIDENT = 1;
+	private Integer MITGLIEDERID;
 	private String nachname;
 	private String vorname;
 	private int anzahlDerMitgliedsjahre;
 
-	
-	
 	/**
 	 * @author Patrick Hentschel, 1524045
 	 * @param vorname1
@@ -26,25 +24,30 @@ public class Member {
 	 *            uebergibt die Jahre, die das Mitglied schon im Club Mitglied
 	 *            ist
 	 */
-	
+
 	public Member(String vorname1, String nachname1, int anzahlMitgliedsjahre) {
 		this.nachname = nachname1;
 		this.vorname = vorname1;
 		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
-		mitgliederId = NEXTIDENT;
+		MITGLIEDERID = NEXTIDENT;
 		++NEXTIDENT;
 
 	}
 
-	
-	public long getMitgliederId(){
-		return this.mitgliederId;
+	/**
+	 * 
+	 * @return gibt die MitgliederID aus
+	 */
+
+	public Integer getMITGLIEDERID() {
+		return MITGLIEDERID;
 	}
+
 	/**
 	 * @return gibt den Nachnamen aus
 	 */
 	public String getNachname() {
-		return nachname;
+		return this.nachname;
 	}
 
 	/**
@@ -77,7 +80,7 @@ public class Member {
 	 * @return gibt die Mitgliedsjahre eines Mitgliedes aus
 	 */
 	public int getAnzahlDerMitgliedsjahre() {
-		return anzahlDerMitgliedsjahre;
+		return this.anzahlDerMitgliedsjahre;
 	}
 
 	/**
@@ -89,33 +92,9 @@ public class Member {
 		this.anzahlDerMitgliedsjahre = anzahlDerMitgliedsjahre;
 	}
 
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		super.finalize();
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	
-
 	@Override
 	public String toString() {
-		return "Mitglied: " + nachname + ", " + vorname + " Mitglied seit: " + anzahlDerMitgliedsjahre + " Jahren"
-				+ " --MitgliedsID: " + mitgliederId;
+		return "          " + nachname + "  " + vorname + "            " + MITGLIEDERID;
 
 	}
 

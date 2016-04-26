@@ -1,81 +1,50 @@
 package mitgliederVerwaltung;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 
 @SuppressWarnings("serial")
-public class MembershipList<K, V> implements Map {
+public class MembershipList extends HashMap<Integer, Object> implements Iterable<Object> {
 
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Die Mitgliederliste, in der die Mitglieder des Clubs verwaltet werden.
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 */
+
+	HashMap<Integer, Object> mitgliederListe = new HashMap<Integer, Object>();
+
+	/**
+	 * Konstruktor der Klasse MembershipList fuegt der Liste ein neues Mitglied
+	 * des Clubs hinzu
+	 * 
+	 * @author Patrick Hentschel, 1524045
+	 * @param member
+	 *            das uebergebene Objekt member ist ein Mitglied des Clubs mit
+	 *            all seinen zugehoerigen Daten
+	 */
+
+	public MembershipList(Object member) {
+		mitgliederListe.put(((Member) member).getMITGLIEDERID(), member);
+	}
+
+	public Iterator<Object> iterator(Object member) {
+		while (mitgliederListe.containsValue(((Member) member).getMITGLIEDERID())) {
+			mitgliederListe.getOrDefault(Member.class, Member.class);
+		}
+		return null;
+
 	}
 
 	@Override
-	public boolean containsKey(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public String toString() {
+		return "________________________________________ \n" + "ID " + " Vorname " + " Nachname " + " Mitgliedsjahre /n"
+				+ "----------------------------------" ;
 	}
 
 	@Override
-	public boolean containsValue(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Set entrySet() {
+	public Iterator<Object> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Object get(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Set keySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object put(Object key, Object value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void putAll(Map m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object remove(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Collection values() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }
