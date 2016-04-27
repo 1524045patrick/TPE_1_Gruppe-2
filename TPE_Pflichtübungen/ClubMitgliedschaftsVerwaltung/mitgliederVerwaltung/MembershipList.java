@@ -39,7 +39,7 @@ public class MembershipList extends HashMap<Integer, Object> implements Iterable
 	@Override
 	public String toString() {
 		return "________________________________________ \n" + "ID " + " Vorname " + " Nachname " + " Mitgliedsjahre /n"
-				+ "----------------------------------" ;
+				+ "----------------------------------";
 	}
 
 	@Override

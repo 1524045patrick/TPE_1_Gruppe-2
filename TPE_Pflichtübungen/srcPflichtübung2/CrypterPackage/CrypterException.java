@@ -20,7 +20,7 @@ public class CrypterException extends Throwable{
     }
 
     public CrypterException(final String arg0, final Throwable arg1) {
-        super(arg0, arg1);
+       super(arg0, arg1);
     }
 
 }

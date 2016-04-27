@@ -10,7 +10,7 @@ public class CrypterCaesar implements Crypter {
 	 * der if-Abfrage wird geprueft ob der Key auch nur einen Buchstaben
 	 * enthaelt, wie fuer die Caesar-Verschluesselung notwendig
 	 * 
-	 * @author Dennis Szczerbinski
+	 * @author Patrick Hentschel
 	 * @param uebergabeKey
 	 *            Key zur Verschluesselung
 	 * @throws CrypterException
