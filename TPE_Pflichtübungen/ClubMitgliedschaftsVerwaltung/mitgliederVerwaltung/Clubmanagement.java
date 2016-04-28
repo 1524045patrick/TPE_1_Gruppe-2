@@ -27,10 +27,11 @@ public class Clubmanagement {
 		/**
 		 * Mitglieder hinzufügen
 		 */
-		test.put(Member.getMITGLIEDERID(), a);
-		test.put(Member.getMITGLIEDERID(), b);
-		test.put(Member.getMITGLIEDERID(), c);
-		
+		test.put(a.getMITGLIEDERID(), a);
+		test.put(b.getMITGLIEDERID(), b);
+		test.put(c.getMITGLIEDERID(), c);
+		test.test1(d);
+
 		System.out.println(a.getMITGLIEDERID());
 
 		/**

@@ -9,12 +9,14 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @SuppressWarnings("serial")
-public class MembershipList<K, V> extends HashMap<K, V> implements Map<K, V>{
+public class MembershipList<K, V> extends HashMap<K, V> implements Map<K, V> {
+
+	Object member;
 
 	/**
 	 * Standard Konstruktor
 	 */
-	public MembershipList(){
+	public MembershipList() {
 		super();
 	}
 
@@ -93,6 +95,25 @@ public class MembershipList<K, V> extends HashMap<K, V> implements Map<K, V>{
 		return super.put(arg0, arg1);
 	}
 
+	/**
+	 * @author Patrick Hentschel
+	 * @param member
+	 *            ein Mitglied des Clubs, welches der Mitgliederliste
+	 *            hinzugefuegt werden kann ohne eine MitgliederID zu übergeben.
+	 *            
+	 * @return Die Methode ueberladene Methode put, ruft in diesem Fall im die
+	 *         urspruengliche put Methode auf. Diese benoetigt die MitgliederID,
+	 *         welche wiederrum im Konstrukor von Member immer generiert wird
+	 *         und somit nur noch ueber den Aufruf der Funktion
+	 *         getMITGLIEDERID() einen Key fuer die HashMap hinzufuegt und den
+	 *         zugehoerigen Value(das Mitglied des Clubs)
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public V put(Member member) {
+		return put((K) new Integer(member.getMITGLIEDERID()), (V) member);
+	}
+	
 	@Override
 	public void putAll(Map<? extends K, ? extends V> arg0) {
 		super.putAll(arg0);
@@ -140,21 +161,17 @@ public class MembershipList<K, V> extends HashMap<K, V> implements Map<K, V>{
 
 	@Override
 	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
 		return super.equals(arg0);
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}
-	
-	
+
 }
