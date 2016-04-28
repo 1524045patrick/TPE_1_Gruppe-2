@@ -16,6 +16,7 @@ public class Clubmanagement {
 		Member a = new Member("Patrick", "Hentschel", 3);
 		Member b = new Member("Mandy", "Schmidt", 2);
 		Member c = new Member("Dennis", "Scezerbinski", 15);
+		Member d = new Member("Test", "Zwei", 1);
 
 		/**
 		 * HashMap
@@ -26,9 +27,11 @@ public class Clubmanagement {
 		/**
 		 * Mitglieder hinzufügen
 		 */
-		test.put(a.getMITGLIEDERID(), a);
-		test.put(b.getMITGLIEDERID(), b);
-		test.put(c.getMITGLIEDERID(), c);
+		test.put(Member.getMITGLIEDERID(), a);
+		test.put(Member.getMITGLIEDERID(), b);
+		test.put(Member.getMITGLIEDERID(), c);
+		
+		System.out.println(a.getMITGLIEDERID());
 
 		/**
 		 * Ein Set für alle Keys von test
