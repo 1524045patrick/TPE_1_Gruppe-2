@@ -1,177 +1,32 @@
 package mitgliederVerwaltung;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+
+/**
+ * Created by Patricks-PC on 02.05.2016.
+ */
 
 @SuppressWarnings("serial")
-public class MembershipList<K, V> extends HashMap<K, V> implements Map<K, V> {
+public class MembershipList extends HashMap<Integer, Member> implements Map<Integer, Member>, Iterable<Member> {
 
-	Object member;
+	
+	HashMap<Integer, Member> membershiplist;
 
-	/**
-	 * Standard Konstruktor
-	 */
-	public MembershipList() {
-		super();
-	}
+    public MembershipList() {
+        this.membershiplist = new HashMap<>();
+    }
 
-	@Override
-	public void clear() {
-		super.clear();
-	}
+	public Member put(Member member){
+        return put(member.getMitgliederid(), member);
+    }
+	
 
-	@Override
-	public Object clone() {
-		return super.clone();
-	}
-
-	@Override
-	public V compute(K arg0, BiFunction<? super K, ? super V, ? extends V> arg1) {
-		return super.compute(arg0, arg1);
-	}
-
-	@Override
-	public V computeIfAbsent(K arg0, Function<? super K, ? extends V> arg1) {
-		return super.computeIfAbsent(arg0, arg1);
-	}
-
-	@Override
-	public V computeIfPresent(K arg0, BiFunction<? super K, ? super V, ? extends V> arg1) {
-		return super.computeIfPresent(arg0, arg1);
-	}
-
-	@Override
-	public boolean containsKey(Object arg0) {
-		return super.containsKey(arg0);
-	}
-
-	@Override
-	public boolean containsValue(Object arg0) {
-		return super.containsValue(arg0);
-	}
-
-	@Override
-	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		return super.entrySet();
-	}
-
-	@Override
-	public void forEach(BiConsumer<? super K, ? super V> arg0) {
-		super.forEach(arg0);
-	}
-
-	@Override
-	public V get(Object arg0) {
-		return super.get(arg0);
-	}
-
-	@Override
-	public V getOrDefault(Object arg0, V arg1) {
-		return super.getOrDefault(arg0, arg1);
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return super.isEmpty();
-	}
-
-	@Override
-	public Set<K> keySet() {
-		return super.keySet();
-	}
-
-	@Override
-	public V merge(K arg0, V arg1, BiFunction<? super V, ? super V, ? extends V> arg2) {
-		return super.merge(arg0, arg1, arg2);
-	}
-
-	@Override
-	public V put(K arg0, V arg1) {
-		return super.put(arg0, arg1);
-	}
-
-	/**
-	 * @author Patrick Hentschel
-	 * @param member
-	 *            ein Mitglied des Clubs, welches der Mitgliederliste
-	 *            hinzugefuegt werden kann ohne eine MitgliederID zu übergeben.
-	 *            
-	 * @return Die Methode ueberladene Methode put, ruft in diesem Fall im die
-	 *         urspruengliche put Methode auf. Diese benoetigt die MitgliederID,
-	 *         welche wiederrum im Konstrukor von Member immer generiert wird
-	 *         und somit nur noch ueber den Aufruf der Funktion
-	 *         getMITGLIEDERID() einen Key fuer die HashMap hinzufuegt und den
-	 *         zugehoerigen Value(das Mitglied des Clubs)
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public V put(Member member) {
-		return put((K) new Integer(member.getMITGLIEDERID()), (V) member);
-	}
 	
 	@Override
-	public void putAll(Map<? extends K, ? extends V> arg0) {
-		super.putAll(arg0);
+	public Iterator<Member> iterator() {
+		return new MembershipListIterator(this);
 	}
-
-	@Override
-	public V putIfAbsent(K arg0, V arg1) {
-		return super.putIfAbsent(arg0, arg1);
-	}
-
-	@Override
-	public boolean remove(Object arg0, Object arg1) {
-		return super.remove(arg0, arg1);
-	}
-
-	@Override
-	public V remove(Object arg0) {
-		return super.remove(arg0);
-	}
-
-	@Override
-	public boolean replace(K arg0, V arg1, V arg2) {
-		return super.replace(arg0, arg1, arg2);
-	}
-
-	@Override
-	public V replace(K arg0, V arg1) {
-		return super.replace(arg0, arg1);
-	}
-
-	@Override
-	public void replaceAll(BiFunction<? super K, ? super V, ? extends V> arg0) {
-		super.replaceAll(arg0);
-	}
-
-	@Override
-	public int size() {
-		return super.size();
-	}
-
-	@Override
-	public Collection<V> values() {
-		return super.values();
-	}
-
-	@Override
-	public boolean equals(Object arg0) {
-		return super.equals(arg0);
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-
+	
 }

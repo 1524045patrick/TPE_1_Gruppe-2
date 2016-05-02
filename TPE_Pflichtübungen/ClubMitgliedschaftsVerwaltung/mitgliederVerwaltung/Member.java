@@ -1,9 +1,12 @@
 package mitgliederVerwaltung;
 
+/**
+ * Created by Patricks-PC on 02.05.2016.
+ */
 public class Member {
 
 	private static Integer NEXTIDENT = 1;
-	private Integer MITGLIEDERID;
+	private Integer mitgliederid;
 	private String nachname;
 	private String vorname;
 	private int anzahlDerMitgliedsjahre;
@@ -22,7 +25,7 @@ public class Member {
 		this.nachname = nachname1;
 		this.vorname = vorname1;
 		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
-		MITGLIEDERID = NEXTIDENT;
+		mitgliederid = NEXTIDENT;
 		++NEXTIDENT;
 
 	}
@@ -31,8 +34,8 @@ public class Member {
 	 * @return gibt die MitgliederID aus
 	 */
 
-	public Integer getMITGLIEDERID() {
-		return this.MITGLIEDERID;
+	public Integer getMitgliederid() {
+		return mitgliederid;
 	}
 
 	/**
@@ -82,7 +85,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "          " + nachname + "  " + vorname + "            " + MITGLIEDERID;
+		return "MitgliederID: " + this.mitgliederid + " |Vorname: " + this.vorname + "|--|Nachname: " + this.nachname
+				+ "| Mitglied seit: " + this.getAnzahlDerMitgliedsjahre() + " Jahren"+ "|\n";
 
 	}
 
