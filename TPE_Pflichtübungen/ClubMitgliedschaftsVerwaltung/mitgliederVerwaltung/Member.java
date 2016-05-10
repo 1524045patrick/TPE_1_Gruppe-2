@@ -1,7 +1,5 @@
 package mitgliederVerwaltung;
 
-import java.util.regex.*;
-
 /**
  * 
  * @author Patrick Hentschel, 1524045
@@ -14,6 +12,7 @@ public class Member {
 	private String nachname;
 	private String vorname;
 	private int anzahlDerMitgliedsjahre;
+	private String regExNamen = "[A-Za-zäüöÄÜÖß]+";
 
 	/**
 	 * @author Patrick Hentschel, 1524045
@@ -27,21 +26,32 @@ public class Member {
 	 * @param mitgliederid
 	 *            uebergibt die MitgliedsID des Mitgliedes
 	 * @throws InvalidSignException
-	 *             Exception die geworfen wird sollte ein Name eine Zahl
-	 *             enthalten
+	 *             Exception die geworfen wird sollte ein Name nicht gueltig
+	 *             sein
 	 */
 	public Member(Integer mitgliederid, String nachname, String vorname, int anzahlMitgliedsjahre)
 			throws InvalidSignException {
 
-		if (nachname.matches("[A-Za-z]+") == true) {
+		if (nachname.matches(regExNamen) == true) {
 			this.nachname = nachname;
-			if (vorname.matches("[A-Za-z]+") == true) {
-				this.vorname = vorname;
-				this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
-				this.mitgliederid = mitgliederid;
-			}
 		} else {
-			throw new InvalidSignException();
+			throw new InvalidSignException("Zahlen sind im Namen nicht erlaubt");
+		}
+
+		if (vorname.matches(regExNamen) == true) {
+			this.vorname = vorname;
+		} else {
+			throw new InvalidSignException("Zahlen sind im Namen nicht erlaubt");
+		}
+		if(anzahlMitgliedsjahre >= 0) {
+		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
+		} else {
+			throw new InvalidSignException("Die Jahre dürfen nicht unter 0 sein.");
+		}
+		if(mitgliederid >= 0) {
+		this.mitgliederid = mitgliederid;
+		} else {
+			throw new InvalidSignException("Die MitgliederID muss aus positiven Zahlen bestehen.");
 		}
 	}
 
@@ -63,9 +73,15 @@ public class Member {
 	/**
 	 * @param nachname
 	 *            ermoeglicht die Aenderung des Nachnamens eines Mitgliedes
+	 * @throws InvalidSignException
+	 *             wirft eine Exception falls der Name nicht gueltig ist
 	 */
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
+	public void setNachname(String nachname) throws InvalidSignException {
+		if (nachname.matches(regExNamen) == true) {
+			this.nachname = nachname;
+		} else {
+			throw new InvalidSignException("Zahlen sind im Namen nicht erlaubt");
+		}
 	}
 
 	/**
@@ -78,9 +94,15 @@ public class Member {
 	/**
 	 * @param vorname
 	 *            ermoeglicht die Aenderung des Vornamens eines Mitgliedes
+	 * @throws InvalidSignException
+	 *             wirft eine Exception falls der Name nicht gueltig ist
 	 */
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
+	public void setVorname(String vorname) throws InvalidSignException {
+		if (vorname.matches(regExNamen) == true) {
+			this.vorname = vorname;
+		} else {
+			throw new InvalidSignException("Zahlen sind im Namen nicht erlaubt");
+		}
 	}
 
 	/**
@@ -93,9 +115,48 @@ public class Member {
 	/**
 	 * @param anzahlDerMitgliedsjahre
 	 *            ermoeglicht die Aenderung der Anzahl der Mitgliedsjahre
+	 * @throws InvalidSignException wirft eine Exception, falls das Mitglied unter 0 jahre Mitglied sein soll
 	 */
-	public void setAnzahlDerMitgliedsjahre(int anzahlDerMitgliedsjahre) {
-		this.anzahlDerMitgliedsjahre = anzahlDerMitgliedsjahre;
+	public void setAnzahlDerMitgliedsjahre(int anzahlDerMitgliedsjahre) throws InvalidSignException {
+		if(anzahlDerMitgliedsjahre >= 0) {
+			this.anzahlDerMitgliedsjahre = anzahlDerMitgliedsjahre;
+		} else {
+			throw new InvalidSignException("Die Anzahl der Mitgliedsjahre muss größer 0 sein.");
+		}
+		
+	}
+
+	/**
+	 * Muss ueberschrieben werden um die Referenz der Objekte zu ignorieren und
+	 * nur auf die Parametergleichheit zu pruefen
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Member other = (Member) obj;
+		if (anzahlDerMitgliedsjahre != other.anzahlDerMitgliedsjahre)
+			return false;
+		if (mitgliederid == null) {
+			if (other.mitgliederid != null)
+				return false;
+		} else if (!mitgliederid.equals(other.mitgliederid))
+			return false;
+		if (nachname == null) {
+			if (other.nachname != null)
+				return false;
+		} else if (!nachname.equals(other.nachname))
+			return false;
+		if (vorname == null) {
+			if (other.vorname != null)
+				return false;
+		} else if (!vorname.equals(other.vorname))
+			return false;
+		return true;
 	}
 
 	/**
@@ -119,17 +180,13 @@ public class Member {
 	 *         um unterschiedliche Mitglieder, da gleiche Namen etc. durchaus
 	 *         moeglich sind. Jedoch nicht eine gleiche ID
 	 */
-	public boolean compareTo(Member a, Member b) {
-		if (a.getVorname().equals(b.getVorname())) {
-			if (a.getNachname().equals(b.getNachname())) {
-				if (a.getAnzahlDerMitgliedsjahre() == b.getAnzahlDerMitgliedsjahre()) {
-					if (a.getMitgliederid() == b.getMitgliederid()) {
-						return true;
-					}
-				}
-			}
+	public static boolean compareTo(Member a, Member b) {
+
+		if (a.equals(b) == true) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 
 	}
 
