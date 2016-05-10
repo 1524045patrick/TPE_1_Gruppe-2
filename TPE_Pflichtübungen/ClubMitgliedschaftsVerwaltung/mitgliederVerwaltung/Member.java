@@ -1,33 +1,48 @@
 package mitgliederVerwaltung;
 
+import java.util.regex.*;
+
 /**
- * Created by Patricks-PC on 02.05.2016.
+ * 
+ * @author Patrick Hentschel, 1524045
+ *
  */
+
 public class Member {
 
-	private static Integer NEXTIDENT = 1;
 	private Integer mitgliederid;
 	private String nachname;
 	private String vorname;
 	private int anzahlDerMitgliedsjahre;
 
 	/**
-	 * @param vorname1
+	 * @author Patrick Hentschel, 1524045
+	 * @param vorname
 	 *            uebergibt den Vornamen des Mitgliedes
-	 * @param nachname1
+	 * @param nachname
 	 *            uebergibt den Nachnamen des Mitgliedes
 	 * @param anzahlMitgliedsjahre
 	 *            uebergibt die Jahre, die das Mitglied schon im Club Mitglied
 	 *            ist
+	 * @param mitgliederid
+	 *            uebergibt die MitgliedsID des Mitgliedes
+	 * @throws InvalidSignException
+	 *             Exception die geworfen wird sollte ein Name eine Zahl
+	 *             enthalten
 	 */
+	public Member(Integer mitgliederid, String nachname, String vorname, int anzahlMitgliedsjahre)
+			throws InvalidSignException {
 
-	public Member(String vorname1, String nachname1, int anzahlMitgliedsjahre) {
-		this.nachname = nachname1;
-		this.vorname = vorname1;
-		this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
-		mitgliederid = NEXTIDENT;
-		++NEXTIDENT;
-
+		if (nachname.matches("[A-Za-z]+") == true) {
+			this.nachname = nachname;
+			if (vorname.matches("[A-Za-z]+") == true) {
+				this.vorname = vorname;
+				this.anzahlDerMitgliedsjahre = anzahlMitgliedsjahre;
+				this.mitgliederid = mitgliederid;
+			}
+		} else {
+			throw new InvalidSignException();
+		}
 	}
 
 	/**
@@ -83,19 +98,38 @@ public class Member {
 		this.anzahlDerMitgliedsjahre = anzahlDerMitgliedsjahre;
 	}
 
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @return Gibt ein Mitglied mit allen zugehoerigen Daten aus
+	 */
 	@Override
 	public String toString() {
 		return "MitgliederID: " + this.mitgliederid + " |Vorname: " + this.vorname + "|--|Nachname: " + this.nachname
-				+ "| Mitglied seit: " + this.getAnzahlDerMitgliedsjahre() + " Jahren"+ "|\n";
+				+ "| Mitglied seit: " + this.getAnzahlDerMitgliedsjahre() + " Jahren" + "|\n";
 
 	}
 
-	public String compareTo(Member a, Member b) {
-		if (a.equals(b)) {
-			return a.toString() + " es handelt sich um das selbe Mitglied";
-		} else {
-			return a.toString() + " \n" + b.toString() + "\n-->Es handelt sich um verschiedene Mitglieder.";
+	/**
+	 * @author Patrick Hentschel, 1524045
+	 * @param a
+	 *            Uebergabe des ersten Mitgliedes zum Vergleich
+	 * @param b
+	 *            Uebergabe des zweiten Mitgliedes zum Vergleich
+	 * @return So lange nicht die ID gleich ist handelt es sich grundsaetzlich
+	 *         um unterschiedliche Mitglieder, da gleiche Namen etc. durchaus
+	 *         moeglich sind. Jedoch nicht eine gleiche ID
+	 */
+	public boolean compareTo(Member a, Member b) {
+		if (a.getVorname().equals(b.getVorname())) {
+			if (a.getNachname().equals(b.getNachname())) {
+				if (a.getAnzahlDerMitgliedsjahre() == b.getAnzahlDerMitgliedsjahre()) {
+					if (a.getMitgliederid() == b.getMitgliederid()) {
+						return true;
+					}
+				}
+			}
 		}
+		return false;
 
 	}
 

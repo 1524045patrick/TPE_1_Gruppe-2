@@ -2,35 +2,108 @@ package mitgliederVerwaltung;
 
 public class Clubmanagement {
 
-	public static void main(String[] args) {
-	
-		
+	public static void main(String[] args) throws InvalidSignException {
+
 		/**
 		 * Objekterstellung
 		 */
-		Member a = new Member("Patrick", "Hentschel", 3);
-		Member b = new Member("Mandy", "Schmidt", 2);
-		Member c = new Member("Dennis", "Scezerbinski", 15);
-		Member d = new Member("Fauler", "Sack", 5);
+		Member a = new Member(2, "Mustermann", "Heinz", 16);
+		Member b = new Member(6, "Koch", "Anette", 15);
+		Member c = new Member(5, "Simpson", "Bart", 9);
+		Member d = new Member(3, "Simpson", "Lisa", 5);
 
 		/**
 		 * HashMap
 		 */
-		MembershipList test = new MembershipList();
+		MembershipList alt = new MembershipList();
+
+		/**
+		 * Mitglieder hinzufuegen
+		 */
+		alt.put(a);
+		alt.put(b);
+		alt.put(c);
+		alt.put(d);
+
+		/**
+		 * Ausgabe der Laenge
+		 */
+		System.out.println(alt.size());
+
+		/**
+		 * Ausgabe der Mitglieder
+		 */
+		System.out.println(alt);
+
+		/**
+		 * Loeschen des Mitgliedes mit der ID 2
+		 */
+		alt.remove(2);
+
+		/**
+		 * erstellen neuer Liste der Vereinsmitglieder
+		 */
+		MembershipList neu = new MembershipList();
+
+		/**
+		 * kopieren der alten Liste in die neue
+		 */
+		neu = (MembershipList) alt.clone();
+
+		/**
+		 * hinzufuegen des neuen Mitgliedes
+		 */
+		Member e = new Member(2, "Simpson", "Lisa", 5);
+		neu.put(e);
+
+		/**
+		 * Pruefung der Existenz des Mitgliedes ID 2 in alter liste
+		 */
+		System.out.println(alt.containsKey(2));
+
+		/**
+		 * Pruefung der Existenz des Mitgliedes ID 2 in der neuen Liste mit
+		 * Ausgabe der Mitgliedsdaten
+		 */
+		System.out.println(neu.containsKey(2));
+		System.out.println(neu.get(2));
 		
 		/**
-		 * Mitglieder hinzufügen
+		 * Ausgabe des Mitgliedes mit der ID 5
 		 */
-		test.put(a);
-		test.put(b);
-		test.put(c);
-		test.put(d);
+		System.out.println(neu.get(5));
 		
 		/**
-		 * foreach ausgabe von den Mitgliedern
+		 * aendern des Vornamens in Guenter
 		 */
-		for (Member member : test) {
-			System.out.println(member);
-		}
+		neu.get(5).setVorname("Günter");
+		
+		/**
+		 * Ausgabe des Mitgliedes mit der ID 5
+		 */
+		System.out.println(neu.get(5));
+		
+		/**
+		 * Loeschen des Mitgliedes mit der ID 5 aus der neuen Liste
+		 */
+		neu.remove(5);
+		
+		/**
+		 * Ausgabe der Mitglieder der ersten und zweiten Liste
+		 */
+		System.out.println(alt);
+		System.out.println(neu);
+		System.out.println();
+		
+		/**
+		 * Leeren beider Listen + Ausgabe der Laenge der Listen
+		 */
+		alt.clear();
+		neu.clear();
+		
+		System.out.println(alt.size());
+		System.out.println(neu.size());
+		
+		System.out.println(a.compareTo(a, b));
 	}
 }
