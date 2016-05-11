@@ -1,5 +1,12 @@
 package mitgliederVerwaltung;
 
+
+/**
+ * 
+ * @author Patrick Hentschel, 1524045
+ *
+ */
+
 public class Clubmanagement {
 
 	public static void main(String[] args) throws InvalidSignException {
@@ -29,6 +36,7 @@ public class Clubmanagement {
 		 * Ausgabe der Laenge
 		 */
 		System.out.println(alt.size());
+		
 
 		/**
 		 * Ausgabe der Mitglieder
@@ -66,7 +74,9 @@ public class Clubmanagement {
 		 * Ausgabe der Mitgliedsdaten
 		 */
 		System.out.println(neu.containsKey(2));
+		System.out.println();
 		System.out.println(neu.get(2));
+		
 		
 		/**
 		 * Ausgabe des Mitgliedes mit der ID 5
@@ -82,6 +92,7 @@ public class Clubmanagement {
 		 * Ausgabe des Mitgliedes mit der ID 5
 		 */
 		System.out.println(neu.get(5));
+		System.out.println();
 		
 		/**
 		 * Loeschen des Mitgliedes mit der ID 5 aus der neuen Liste
@@ -92,6 +103,8 @@ public class Clubmanagement {
 		 * Ausgabe der Mitglieder der ersten und zweiten Liste
 		 */
 		System.out.println(alt);
+		System.out.println();
+		System.out.println();
 		System.out.println(neu);
 		System.out.println();
 		
@@ -104,6 +117,7 @@ public class Clubmanagement {
 		System.out.println(alt.size());
 		System.out.println(neu.size());
 		
-		System.out.println(a.compareTo(a, b));
+		
+		
 	}
 }
