@@ -1,48 +1,35 @@
 package bahnsimulation;
 
-/*
- * Created by Patrick Hentschel on 27.05.2016.
- */
 public class Strecke {
-	
-	private int laenge;
-	private int blocklaenge;
-	private int blockArray[];
-	private String streckenAusgabe = "";
 
-	public Strecke(int laenge) {
-		this.laenge = laenge;
-		blockArray = new int[laenge];
-		for (int i = 0; i < blockArray.length; i++) {
-			blockArray[i] = 0;
-		}
-	}
+	char[] strecke;
+	String ausgabeString = "";
+	Block[] blockStrecke;
 
-	public int[] getBlockArray() {
-		return blockArray;
+	Strecke(int kilometer) {
+		strecke = new char[kilometer];
+		blockStrecke = new Block[kilometer];
+
 	}
 
 	public void addBlock(Block block) {
-		/**
-		 * Block Startpunkt wird gesetzt und Block Endpunkt wird gesetzt -->
-		 * Funktion soll aus der Laenge des Blockes 1er Strecken machen die vom
-		 * Startpunkt bis zum Endpunkt zugewiesen werden sollen
-		 */
-		if (blockArray[block.getStart()] != 0) {
-			try {
-				throw new InvalidStartException("Ein anderer Block belegt diesen Teil der Strecke bereits");
-			} catch (InvalidStartException e) {
-				e.printStackTrace();
-			}
-			for (int i = block.getStart(); i < block.getLaenge(); i++) {
-				blockArray[i] = 1;
+		blockStrecke[block.anfangBlock - 1] = block;
+		strecke[block.anfangBlock - 1] = '|';
+	}
+
+	public String toString() {
+		return ausgabeString;
+	}
+
+	public void streckeSetzen() {
+		for (int i = 0; i < strecke.length; i++) {
+			if (!strecke.equals('|')) {
+				ausgabeString += "-";
+			} else {
+				ausgabeString += "|";
 			}
 		}
 
 	}
 
-	public class InvalidStartException extends Throwable {
-		public InvalidStartException(String s) {
-		}
-	}
 }
